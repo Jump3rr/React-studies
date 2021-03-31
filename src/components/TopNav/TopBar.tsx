@@ -6,7 +6,6 @@ import {Colors} from '../../styledHelpers/Colors';
 import { TextField, InputAdornment } from "@material-ui/core";
 
 const Wrapper2 = styled(Wrapper)`
-    width: 100%;
 `;
 
 const InnerWrapper = styled.div`
@@ -39,14 +38,6 @@ const CustomLogo = styled.img`
 `;
 const SearchIcon = styled.img`
 `;
-const CustomInput = styled.input`
-    
-`;
-
-
-
-
-
 
 
 export const TopBar: FC = () => {

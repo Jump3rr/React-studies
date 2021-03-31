@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {TopBar} from './components/TopNav/TopBar';
+import { TopBar } from './components/TopNav/TopBar';
+import { LeftMenu } from './components/LeftMenu/LeftMenu';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TopBar />
+    <TopBar>
+    </TopBar>
+    <LeftMenu>
     <App />
+    </LeftMenu>
   </React.StrictMode>,
   document.getElementById('root')
 );
