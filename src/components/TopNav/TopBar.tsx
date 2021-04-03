@@ -6,12 +6,15 @@ import {Colors} from '../../styledHelpers/Colors';
 import { TextField, InputAdornment } from "@material-ui/core";
 
 const Wrapper2 = styled(Wrapper)`
+    background-color: #f2f2f2;
 `;
 
 const InnerWrapper = styled.div`
     width: 100%;
     background: ${Colors.white};
     text-align: center;
+    border-radius: 3px;
+    box-shadow: 2px 2px 1px grey;
 `;
 const LeftSide = styled.div`
     float: left;

@@ -5,48 +5,71 @@ import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 
 const Wrapper2 = styled(Wrapper)`
-    width: 20%;
+    width: 18%;
     height: 100vh;
     text-align: center;
-    float: center;
     display: inline-block;
+    background-color: #f2f2f2;
 `;
 
 const About = styled.div`
     height: 20%;
     width: 90%;
-    background: ${Colors.black};
-    display: inherit;
-    text-align: center;
-    float: center;
-`;
-
-const ProfileDesc = styled.div`
-    height: 15%;
-    width: 90%;
     background: ${Colors.white};
     display: inherit;
     text-align: center;
     float: center;
+    border-radius: 3px;
+    box-shadow: 2px 2px 1px grey;
+`;
+
+const ProfileDesc = styled.div`
+    width: 90%;
+    background: ${Colors.white};
+    display: inherit;
+    text-align: left;
+    float: center;
+    border-radius: 3px;
+    box-shadow: 2px 2px 1px grey;
+    color: #2b2b2b;
 `;
 
 const CustomImg = styled.img`
-    margin-right: 5px;
+    margin-right: 15px;
+    margin-bottom: -3px;
+`;
+const CustomImgMenu = styled.img`
+    margin-right: 25px;
+    margin-bottom: -3px;
+    transform: scale(1.2);
 `;
 
 const AddIcons = styled.img`
-    margin-left: 5px;
+    margin-right: 5px;
     border-style: groove;
-    border-radius: 3px;
+    border-radius: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-bottom: -5px;
+    float: right;
 `;
 const Menu = styled.div`
-    height: 15%;
     width: 90%;
-    background-color: red;
     display: inherit;
-    text-align: center;
+    text-align: left;
     float: center;
 `;
+const OneLine = styled.div`
+    width: 90%;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+`;
+
+
 
 export const LeftMenu: FC = () => {
     return (
@@ -54,18 +77,30 @@ export const LeftMenu: FC = () => {
             <About>
             </About>
             <ProfileDesc>
-            <CustomImg src="./media/icons/network.png" />
-            Your Network
-            <AddIcons src="./media/icons/user-plus.png" />
-            <p />
-            <CustomImg src="./media/icons/publications.png" />
-            Your Publications 
-            <AddIcons src="./media/icons/plus.png" />
-
-
+                <OneLine>
+                    <CustomImg src="./media/icons/network.png" />
+                    Your Network
+                    <AddIcons src="./media/icons/user-plus.png" />
+                </OneLine>
+                <OneLine>
+                    <CustomImg src="./media/icons/publications.png" />
+                    Your Publications 
+                    <AddIcons src="./media/icons/plus.png" />
+                </OneLine>
             </ProfileDesc>
             <Menu>
-
+            <OneLine>
+            <CustomImgMenu src="./media/icons/publications.png" />
+            Publications
+            </OneLine>
+            <OneLine>
+            <CustomImgMenu src="./media/icons/ecosystem.png" />
+            Ecosystem
+            </OneLine>
+            <OneLine>
+            <CustomImgMenu src="./media/icons/entities2.png" />
+            Entities
+            </OneLine>
             </Menu>
             
         </Wrapper2>
