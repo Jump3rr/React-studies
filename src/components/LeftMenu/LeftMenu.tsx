@@ -2,45 +2,35 @@ import { FC } from 'React';
 import styled from 'styled-components';
 
 import {Wrapper} from '../../styledHelpers/Components';
+import {ProfileElements} from '../../styledHelpers/Components';
+import {Icon} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 
 const Wrapper2 = styled(Wrapper)`
+    position: fixed;
     width: 18%;
     height: 100vh;
     text-align: center;
     display: inline-block;
-    background-color: #f2f2f2;
+    margin-top: 10.4vh;
 `;
 
-const About = styled.div`
+const About = styled(ProfileElements)`
     height: 20%;
-    width: 90%;
-    background: ${Colors.white};
-    display: inherit;
+    position: relative;
     text-align: center;
-    float: center;
-    border-radius: 3px;
-    box-shadow: 2px 2px 1px grey;
 `;
 
-const ProfileDesc = styled.div`
-    width: 90%;
-    background: ${Colors.white};
-    display: inherit;
+const ProfileDesc = styled(ProfileElements)`
     text-align: left;
-    float: center;
-    border-radius: 3px;
-    box-shadow: 2px 2px 1px grey;
-    color: #2b2b2b;
+    color: ${Colors.dark};
 `;
 
-const CustomImg = styled.img`
-    margin-right: 15px;
-    margin-bottom: -3px;
+const CustomImg = styled(Icon)`
 `;
-const CustomImgMenu = styled.img`
+
+const CustomImgMenu = styled(Icon)`
     margin-right: 25px;
-    margin-bottom: -3px;
     transform: scale(1.2);
 `;
 
@@ -56,6 +46,7 @@ const AddIcons = styled.img`
     float: right;
 `;
 const Menu = styled.div`
+    margin-left: 7%;
     width: 90%;
     display: inherit;
     text-align: left;

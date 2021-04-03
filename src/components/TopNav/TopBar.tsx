@@ -3,10 +3,14 @@ import styled from 'styled-components';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
+import {TopBarSides} from '../../styledHelpers/Components';
 import { TextField, InputAdornment } from "@material-ui/core";
 
 const Wrapper2 = styled(Wrapper)`
-    background-color: #f2f2f2;
+    position: fixed;
+    width: 100%;
+    height: 9vh;
+    top: 0;
 `;
 
 const InnerWrapper = styled.div`
@@ -16,21 +20,16 @@ const InnerWrapper = styled.div`
     border-radius: 3px;
     box-shadow: 2px 2px 1px grey;
 `;
-const LeftSide = styled.div`
+const LeftSide = styled(TopBarSides)`
     float: left;
-    display: inline; 
-    padding: 10px;
 `;
 
-const RightSide = styled.div`
-    padding: 10px;
+const RightSide = styled(TopBarSides)`
     float: right;
-    display: inline; 
 `;
 
-const InputWrapper = styled.div`
-    display: inline; 
-`;
+const InputWrapper = styled(TopBarSides)``;
+
 const CustomImg = styled.img`
     padding: 10px;
 `;
@@ -39,8 +38,7 @@ const CustomLogo = styled.img`
     height: 2rem;
     text-align: left;
 `;
-const SearchIcon = styled.img`
-`;
+const SearchIcon = styled.img``;
 
 
 export const TopBar: FC = () => {

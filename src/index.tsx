@@ -5,14 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { TopBar } from './components/TopNav/TopBar';
 import { LeftMenu } from './components/LeftMenu/LeftMenu';
+import { MainPage } from './components/MainWrapper/MainPage';
 
 ReactDOM.render(
   <React.StrictMode>
     <TopBar>
     </TopBar>
     <LeftMenu>
-    <App />
     </LeftMenu>
+    <MainPage></MainPage>
   </React.StrictMode>,
   document.getElementById('root')
 );
