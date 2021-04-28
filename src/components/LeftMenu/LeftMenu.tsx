@@ -7,7 +7,6 @@ import {Icon} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 
 const Wrapper2 = styled(Wrapper)`
-    position: fixed;
     width: 18%;
     height: 100vh;
     text-align: center;
@@ -17,7 +16,7 @@ const Wrapper2 = styled(Wrapper)`
 
 const About = styled(ProfileElements)`
     height: 20%;
-    position: relative;
+
     text-align: center;
 `;
 
@@ -31,7 +30,11 @@ const CustomImg = styled(Icon)`
 
 const CustomImgMenu = styled(Icon)`
     margin-right: 25px;
-    transform: scale(1.2);
+    //-webkit-font-smoothing: subpixel-antialiased;
+    //backface-visibility: hidden;
+    width: 25px;
+    height: auto;
+    position: static;
 `;
 
 const AddIcons = styled.img`

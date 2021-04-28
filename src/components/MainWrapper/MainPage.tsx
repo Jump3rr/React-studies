@@ -8,7 +8,7 @@ import {Colors} from '../../styledHelpers/Colors';
 const Wrapper2 = styled(Wrapper)`
     width: 100%;
     padding: 0;
-    height: 1550px;
+    height: 800px;
     text-align: center;
     display: inline-block;
     margin-top: 10.4vh;

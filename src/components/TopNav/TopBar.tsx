@@ -1,6 +1,7 @@
 import {FC} from 'React';
+import useDropdown from 'react-dropdown-hook';
 import styled from 'styled-components';
-
+import {ExpandedMenu} from './ExpandedMenu';
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import {TopBarSides} from '../../styledHelpers/Components';
@@ -22,16 +23,23 @@ const InnerWrapper = styled.div`
 `;
 const LeftSide = styled(TopBarSides)`
     float: left;
+    width: 33%;
+    text-align: left;
 `;
 
 const RightSide = styled(TopBarSides)`
     float: right;
+    text-align: right;
+    width: 33%;
 `;
 
-const InputWrapper = styled(TopBarSides)``;
+const InputWrapper = styled(TopBarSides)`
+    float: center;
+    width: 33%;
+`;
 
 const CustomImg = styled.img`
-    padding: 10px;
+    padding: 2%;
 `;
 const CustomLogo = styled.img`
     width: 2rem;
@@ -39,15 +47,45 @@ const CustomLogo = styled.img`
     text-align: left;
 `;
 const SearchIcon = styled.img``;
+const MenuWrapper = styled.div`
+    display: inline; 
+    height: 100%;
+`;
+const MenuLeft = styled.div`
+    display: inline; 
+    height: 100%;
+    margin-left: 20%;
+`;
+const ExpandedLeftSide = styled.div`
+    display: inline;
+    margin-left: 28%;
+`;
 
 
 export const TopBar: FC = () => {
+    const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] = useDropdown();
+
+    const menuHandler = () => {
+        toggleDropdown();
+    };
     return (
         <Wrapper2>
             <InnerWrapper>
                 <LeftSide>
                     <CustomLogo src="./media/logo.png" alt=""/>
-                    <CustomImg src="./media/icons/house2.png" />
+
+                    <MenuWrapper ref={wrapperRef}>
+                    <MenuLeft onClick={menuHandler}>
+                        <img src="./media/icons/house2.png" alt="" />
+                        <span>Home</span>
+                    <ExpandedLeftSide>
+                        <img className="arrow-icon" src="media/icons/arrow-down.png" alt="arrow down"/>
+                    </ExpandedLeftSide>
+                    </MenuLeft>
+                    {dropdownOpen &&
+                        <ExpandedMenu />
+                    }
+                    </MenuWrapper>
                 </LeftSide>
                     <InputWrapper>
                         <TextField
