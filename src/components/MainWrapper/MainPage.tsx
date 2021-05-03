@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
+import {LeftMenu} from '../LeftMenu/LeftMenu';
+import {TopBar} from '../TopNav/TopBar';
 
 
 const Wrapper2 = styled(Wrapper)`
@@ -16,8 +18,13 @@ const Wrapper2 = styled(Wrapper)`
     border-radius: 5px;
 `;
 
+
 export const MainPage: FC = () => {
     return (
-        <Wrapper2></Wrapper2>
+        
+        <Wrapper2>
+            <TopBar />
+            <LeftMenu />
+        </Wrapper2>
     );
 };

@@ -10,8 +10,9 @@ const Wrapper2 = styled(Wrapper)`
     width: 18%;
     height: 100vh;
     text-align: center;
-    display: inline-block;
-    margin-top: 10.4vh;
+    display: block;
+    order: 0;
+    z-index: 1;
 `;
 
 const About = styled(ProfileElements)`

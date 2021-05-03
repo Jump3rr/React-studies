@@ -9,11 +9,8 @@ import { MainPage } from './components/MainWrapper/MainPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TopBar>
-    </TopBar>
-    <LeftMenu>
-    </LeftMenu>
-    <MainPage></MainPage>
+    <MainPage>
+    </MainPage>
   </React.StrictMode>,
   document.getElementById('root')
 );
