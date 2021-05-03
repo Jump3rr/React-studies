@@ -12,6 +12,7 @@ const Wrapper2 = styled(Wrapper)`
     width: 100%;
     height: 9vh;
     top: 0;
+    z-index: 2;
 `;
 
 const InnerWrapper = styled.div`
@@ -60,6 +61,10 @@ const ExpandedLeftSide = styled.div`
     display: inline;
     margin-left: 28%;
 `;
+const TextField2 = styled(TextField)`
+  
+`;
+
 
 
 export const TopBar: FC = () => {
@@ -88,7 +93,7 @@ export const TopBar: FC = () => {
                     </MenuWrapper>
                 </LeftSide>
                     <InputWrapper>
-                        <TextField
+                        <TextField2
                         id="standard-bare"
                         placeholder="Search"
                         margin="normal"

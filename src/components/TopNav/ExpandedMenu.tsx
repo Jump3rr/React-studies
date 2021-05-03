@@ -43,6 +43,18 @@ const ExpandedMenuItemsWrapper = styled.div`
     border-width: 1px;
   }
 `;
+
+const LogoutBtn = styled.div`
+    margin-top: 10px;
+
+    &:hover, &:focus, &:visited, &:active {
+    cursor: pointer;
+    border-style: outset;
+    border-radius: 5%;
+    border-width: 1px;
+  }
+`;
+
 // const ExpandedMenuIcons = styled.div`
 //     width: 30px;
 //     margin-right: 10px;
@@ -115,13 +127,13 @@ export const ExpandedMenu: FC = () => {
                     )
 
                 })])
-            })};
+            })}
             </Lista>
                 
-                <div id="abc" onClick={closeDropdown}>
+                <LogoutBtn onClick={closeDropdown}>
                 <img className="icon" src="media/icons/logout.png" alt="logout"/>
                 <span>Logout</span>
-                </div>
+                </LogoutBtn>
         </InnerWrapper>
 	)
 }

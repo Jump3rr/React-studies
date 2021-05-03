@@ -4,9 +4,21 @@ import {Colors} from './Colors';
 export const Wrapper = styled.div`
     background: ${Colors.background};
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     padding: 5px;
     overflow: hidden;
+`;
+export const PageElements = styled.div`
+    background: ${Colors.white};
+    display: block;
+    overflow: hidden;
+    padding: 5px;
+    width: 95%;
+    margin-left: 2%;
+    border-radius: 10px;
+    text-align: center;
+    order: 0;
+    z-index: 1;
 `;
 
 export const TopBarSides = styled.div`
