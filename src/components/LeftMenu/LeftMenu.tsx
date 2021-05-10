@@ -1,10 +1,14 @@
-import { FC } from 'React';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {ProfileElements} from '../../styledHelpers/Components';
 import {Icon} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
+import { useSelector } from 'react-redux';
+import { IState } from '../../reducers';
+import { IUsersReducer } from '../../reducers/usersReducer';
+
 
 const Wrapper2 = styled(Wrapper)`
     width: 18%;
@@ -67,11 +71,19 @@ const OneLine = styled.div`
 
 
 export const LeftMenu: FC = () => {
+    const { usersList } = useSelector<IState, IUsersReducer>(globalState => globalState.users);
+
+
     return (
         <Wrapper2>
             <About>
             </About>
+            {usersList.length > 0 &&
             <ProfileDesc>
+                <OneLine>
+                {usersList[0].name}
+                {usersList[0].address.city}
+                </OneLine>
                 <OneLine>
                     <CustomImg src="./media/icons/network.png" />
                     Your Network
@@ -83,6 +95,7 @@ export const LeftMenu: FC = () => {
                     <AddIcons src="./media/icons/plus.png" />
                 </OneLine>
             </ProfileDesc>
+            }
             <Menu>
             <OneLine>
             <CustomImgMenu src="./media/icons/publications.png" />

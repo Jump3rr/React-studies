@@ -1,4 +1,4 @@
-import {FC} from 'React';
+import {FC} from 'react';
 import useDropdown from 'react-dropdown-hook';
 import styled from 'styled-components';
 import {ExpandedMenu} from './ExpandedMenu';
@@ -48,19 +48,19 @@ const CustomLogo = styled.img`
     text-align: left;
 `;
 const SearchIcon = styled.img``;
-const MenuWrapper = styled.div`
-    display: inline; 
-    height: 100%;
-`;
-const MenuLeft = styled.div`
-    display: inline; 
-    height: 100%;
-    margin-left: 20%;
-`;
-const ExpandedLeftSide = styled.div`
-    display: inline;
-    margin-left: 28%;
-`;
+// const MenuWrapper = styled.div`
+//     display: inline; 
+//     height: 100%;
+// `;
+// const MenuLeft = styled.div`
+//     display: inline; 
+//     height: 100%;
+//     margin-left: 20%;
+// `;
+// const ExpandedLeftSide = styled.div`
+//     display: inline;
+//     margin-left: 28%;
+// `;
 const TextField2 = styled(TextField)`
   
 `;
@@ -68,18 +68,18 @@ const TextField2 = styled(TextField)`
 
 
 export const TopBar: FC = () => {
-    const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] = useDropdown();
+    // const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] = useDropdown();
 
-    const menuHandler = () => {
-        toggleDropdown();
-    };
+    // const menuHandler = () => {
+    //     toggleDropdown();
+    // };
     return (
         <Wrapper2>
             <InnerWrapper>
                 <LeftSide>
                     <CustomLogo src="./media/logo.png" alt=""/>
 
-                    <MenuWrapper ref={wrapperRef}>
+                    {/* <MenuWrapper ref={wrapperRef}>
                     <MenuLeft onClick={menuHandler}>
                         <img src="./media/icons/house2.png" alt="" />
                         <span>Home</span>
@@ -87,10 +87,10 @@ export const TopBar: FC = () => {
                         <img className="arrow-icon" src="media/icons/arrow-down.png" alt="arrow down"/>
                     </ExpandedLeftSide>
                     </MenuLeft>
-                    {dropdownOpen &&
+                    {dropdownOpen && */}
                         <ExpandedMenu />
-                    }
-                    </MenuWrapper>
+                    {/* }
+                    </MenuWrapper> */}
                 </LeftSide>
                     <InputWrapper>
                         <TextField2

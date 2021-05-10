@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { TopBar } from './components/TopNav/TopBar';
-import { LeftMenu } from './components/LeftMenu/LeftMenu';
 import { MainPage } from './components/MainWrapper/MainPage';
+import { Provider } from 'react-redux';
+import store from './tools/store';
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
     <MainPage>
     </MainPage>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

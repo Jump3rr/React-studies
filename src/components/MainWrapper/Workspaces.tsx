@@ -1,4 +1,4 @@
-import { FC } from 'React';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import {PageElements, Wrapper} from '../../styledHelpers/Components';

@@ -1,5 +1,8 @@
-import { FC } from 'React';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
+
+import { useDispatch } from 'react-redux';
+import { getUsers } from '../../actions/usersActions';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
@@ -29,9 +32,15 @@ const StyledSwitch = styled.div`
     display: block;
     width: 80%;
 `;
+type GetUsers = ReturnType<typeof getUsers>;
 
 
 export const MainPage: FC = () => {
+        const dispatch = useDispatch();
+        useEffect(() => {
+            dispatch<GetUsers>(getUsers());
+        }, []);
+
     return (
         <Router>
              <TopBar />

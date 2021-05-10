@@ -101,9 +101,26 @@ const LogoutBtn = styled.div`
 //         </ExpandedMenuItemsWrapper>
 //     );
 // }
+const MenuWrapper = styled.div`
+    display: inline; 
+    height: 100%;
+`;
+const MenuLeft = styled.div`
+    display: inline; 
+    height: 100%;
+    margin-left: 20%;
+`;
+const ExpandedLeftSide = styled.div`
+    display: inline;
+    margin-left: 28%;
+`;
 
 export const ExpandedMenu: FC = () => {
     const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] = useDropdown();
+
+    const menuHandler = () => {
+        toggleDropdown();
+    };
 
      const [InputText, setInputText] = useState<string>('');
 
@@ -114,26 +131,37 @@ export const ExpandedMenu: FC = () => {
 
 
 	return (
-        <InnerWrapper>
-            <input type="text" value={InputText} onChange={inputHandler}/>
-            <Lista>
-            {ITEMS.map(element => {
-                return([
-                <SectionTitleItems>{element.title}</SectionTitleItems>,
-                element.items.map(itemElement => {
-                    return (
-                    itemElement.title.toLowerCase().includes(InputText.toLowerCase()) &&
-                    <ExpandedMenuItemsWrapper><img src={itemElement.icon} alt=''></img>{itemElement.title}</ExpandedMenuItemsWrapper>
-                    )
+        <MenuWrapper ref={wrapperRef}>
+        <MenuLeft onClick={menuHandler}>
+            <img src="./media/icons/house2.png" alt="" />
+            <span>Home</span>
+        <ExpandedLeftSide>
+            <img className="arrow-icon" src="media/icons/arrow-down.png" alt="arrow down"/>
+        </ExpandedLeftSide>
+        </MenuLeft>
+        {dropdownOpen &&
+            <InnerWrapper>
+                <input type="text" value={InputText} onChange={inputHandler}/>
+                <Lista>
+                {ITEMS.map(element => {
+                    return([
+                    <SectionTitleItems>{element.title}</SectionTitleItems>,
+                    element.items.map(itemElement => {
+                        return (
+                        itemElement.title.toLowerCase().includes(InputText.toLowerCase()) &&
+                        <ExpandedMenuItemsWrapper><img src={itemElement.icon} alt=''></img>{itemElement.title}</ExpandedMenuItemsWrapper>
+                        )
 
-                })])
-            })}
-            </Lista>
-                
-                <LogoutBtn onClick={closeDropdown}>
-                <img className="icon" src="media/icons/logout.png" alt="logout"/>
-                <span>Logout</span>
-                </LogoutBtn>
-        </InnerWrapper>
+                    })])
+                })}
+                </Lista>
+                    
+                    <LogoutBtn onClick={closeDropdown}>
+                    <img className="icon" src="media/icons/logout.png" alt="logout"/>
+                    <span>Logout</span>
+                    </LogoutBtn>
+            </InnerWrapper>
+                            }
+            </MenuWrapper>
 	)
 }
