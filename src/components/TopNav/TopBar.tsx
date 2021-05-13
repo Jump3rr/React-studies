@@ -6,6 +6,7 @@ import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import {TopBarSides} from '../../styledHelpers/Components';
 import { TextField, InputAdornment } from "@material-ui/core";
+import {Link} from 'react-router-dom';
 
 const Wrapper2 = styled(Wrapper)`
     position: fixed;
@@ -77,7 +78,7 @@ export const TopBar: FC = () => {
         <Wrapper2>
             <InnerWrapper>
                 <LeftSide>
-                    <CustomLogo src="./media/logo.png" alt=""/>
+                    <Link to='/'><CustomLogo src="./media/logo.png" alt=""/></Link>
 
                     {/* <MenuWrapper ref={wrapperRef}>
                     <MenuLeft onClick={menuHandler}>

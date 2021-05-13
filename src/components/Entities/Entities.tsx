@@ -1,18 +1,18 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import {PageElements, Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 
 const Wrapper2 = styled(PageElements)`
-    height: 40vh;
+    height: auto;
+    background-color: ${Colors.background};
 `;
 
-
-export const Publications: FC = () => {
+export const Entities: FC = () => {
     return (
-            <Wrapper2>
-                {/* //{GetPost[0].id} */}
-            </Wrapper2>
+        <Wrapper2>
+            <h2>ENTITIES</h2>
+        </Wrapper2>
     );
 };

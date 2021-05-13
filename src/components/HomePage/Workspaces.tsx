@@ -6,6 +6,7 @@ import {Colors} from '../../styledHelpers/Colors';
 
 const Wrapper2 = styled(PageElements)`
     height: 40vh;
+    background-color: none;
 `;
 
 

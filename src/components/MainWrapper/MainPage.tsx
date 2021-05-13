@@ -8,8 +8,8 @@ import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import {LeftMenu} from '../LeftMenu/LeftMenu';
 import {TopBar} from '../TopNav/TopBar';
-import {Publications} from './Publications';
-import {Workspaces} from './Workspaces';
+import {Entities} from '../Entities/Entities';
+import {HomePage} from '../HomePage/HomePage';
 import {
     BrowserRouter as Router,
     Switch,
@@ -49,12 +49,10 @@ export const MainPage: FC = () => {
                 <StyledSwitch>
                     <Switch>
                     <Route path="/entities" exact>
-                        {/* <Entities /> */}
+                        <Entities /> 
                     </Route>
                     <Route path="/" exact>
-                        <Publications />
-                        <h2>Workspaces</h2>
-                        <Workspaces />
+                        <HomePage />
                     </Route>
                     </Switch>
                 </StyledSwitch>

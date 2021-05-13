@@ -8,6 +8,7 @@ import {Colors} from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
+import {Link} from 'react-router-dom';
 
 
 const Wrapper2 = styled(Wrapper)`
@@ -68,6 +69,17 @@ const OneLine = styled.div`
     margin-left: 10px;
 `;
 
+const Urls = styled.div`
+    text-decoration: none;
+    display: inline-block;
+    color: ${Colors.dark};
+
+    &:hover {
+        color: ${Colors.lightgrey};
+        text-decoration: underline;
+    }
+`;
+
 
 
 export const LeftMenu: FC = () => {
@@ -99,15 +111,15 @@ export const LeftMenu: FC = () => {
             <Menu>
             <OneLine>
             <CustomImgMenu src="./media/icons/publications.png" />
-            Publications
+            <Link to='/'><Urls>Publications</Urls></Link>
             </OneLine>
             <OneLine>
             <CustomImgMenu src="./media/icons/ecosystem.png" />
-            Ecosystem
+            <Link to='/'><Urls>Ecosystem</Urls></Link>
             </OneLine>
             <OneLine>
             <CustomImgMenu src="./media/icons/entities2.png" />
-            Entities
+            <Link to='/Entities'><Urls>Entities</Urls></Link>
             </OneLine>
             </Menu>
             

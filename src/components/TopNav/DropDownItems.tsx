@@ -4,23 +4,28 @@ export const ITEMS: ISectionsItems[] = [
         items: [
             {
                 icon: '../../media/icons/house2.png',
-                title: 'Home'
+                title: 'Home',
+                url: '/'
             },
             {
                 icon: '../../media/icons/publications.png',
-                title: 'Publications'
+                title: 'Publications',
+                url: '/'
             },
             {
                 icon: '../../media/icons/people.png',
-                title: 'People'
+                title: 'People',
+                url: '/'
             },
             {
                 icon: '../../media/icons/entities2.png',
-                title: 'Entities'
+                title: 'Entities',
+                url: '/Entities'
             },
             {
                 icon: '../../media/icons/administration.png',
-                title: 'Administration'
+                title: 'Administration',
+                url: '/'
             },
         ]
     },
@@ -29,23 +34,28 @@ export const ITEMS: ISectionsItems[] = [
         items: [
             {
                 icon: '../../media/icons/house2.png',
-                title: 'Client contract'
+                title: 'Client contract',
+                url: '/'
             },
             {
                 icon: '../../media/icons/house2.png',
-                title: 'Supplier contract'
+                title: 'Supplier contract',
+                url: '/'
             },
             {
                 icon: '../../media/icons/entities2.png',
-                title: 'Corporate'
+                title: 'Corporate',
+                url: '/'
             },
             {
                 icon: '../../media/icons/publications.png',
-                title: 'Group Norms'
+                title: 'Group Norms',
+                url: '/'
             },
             {
                 icon: '../../media/icons/house2.png',
-                title: 'Real estate contracts'
+                title: 'Real estate contracts',
+                url: '/'
             },
         ]
     },
@@ -54,11 +64,13 @@ export const ITEMS: ISectionsItems[] = [
         items: [
             {
                 icon: '../../media/icons/privacy.png',
-                title: 'Privacy'
+                title: 'Privacy',
+                url: '/'
             },
             {
                 icon: '../../media/icons/settings.png',
-                title: 'Settings'
+                title: 'Settings',
+                url: '/'
             },
         ]
     },
@@ -72,4 +84,5 @@ export interface ISectionsItems {
 export interface IDDItems {
     icon: string,
     title: string,
+    url: string,
 }

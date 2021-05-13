@@ -1,10 +1,10 @@
 import { FC, useState, ChangeEvent } from "react";
 import styled from 'styled-components';
 import useDropdown from "react-dropdown-hook";
-// import {ISectionsItems} from './DropDownItems';
-// import {IDDItems} from './DropDownItems';
+
 import {ITEMS} from './DropDownItems';
 import {Colors} from '../../styledHelpers/Colors';
+import {Link} from 'react-router-dom';
 
 const InnerWrapper = styled.div`
     width: 15%;
@@ -32,16 +32,22 @@ const SectionTitleItems = styled.div `
 `;
 
 const ExpandedMenuItemsWrapper = styled.div`
-  display: flex;
   align-items: center;
   margin: 10px 0 0 10px;
+  text-decoration: none;
+  color: ${Colors.dark};
+  display: flex;
 
-  &:hover, &:focus, &:visited, &:active {
+  &:hover, &:focus, &:visited, &:active, &:link {
+    background-color: ${Colors.lightgrey};
     cursor: pointer;
     border-style: outset;
     border-radius: 5%;
     border-width: 1px;
   }
+`;
+const Icons = styled.div`
+    width: 40px;
 `;
 
 const LogoutBtn = styled.div`
@@ -54,53 +60,6 @@ const LogoutBtn = styled.div`
     border-width: 1px;
   }
 `;
-
-// const ExpandedMenuIcons = styled.div`
-//     width: 30px;
-//     margin-right: 10px;
-//     display: inline-block;
-// `;
-// const DropdownSearch = styled.input`
-//     width: 80%;
-//     border-radius: 15px;
-//     border-width: 1px;
-// `;
-
-// interface IDDItemsProps {
-//     item: IDDItems,
-//     index: number,
-// }
-// interface IDDSectionsItemsProps {
-//     itemsGroup: ISectionsItems,
-//     index: number,
-// }
-
-
-// const DropdownMenuSectionItems: FC<IDDSectionsItemsProps> = props => {
-//     const itemGroup = props.itemsGroup;
-//     return (
-//         <Lista key={props.index}>
-//                 <SectionTitleItems>{itemGroup.title}</SectionTitleItems>
-                
-//             {itemGroup.items.map(
-//                 (item: IDDItems, index: number) => {
-//                     return (
-//                         <DropdownMenuItem index={index} item={item}/>
-//                     );
-//                 }
-//             )}
-//         </Lista>
-//     );
-// }
-// const DropdownMenuItem: FC<IDDItemsProps> = props => {
-//     const item = props.item;
-
-//     return (
-//         <ExpandedMenuItemsWrapper key={props.index}>
-//                 <span><ExpandedMenuIcons><img src={item.icon} alt=""></img></ExpandedMenuIcons>{item.title}</span>
-//         </ExpandedMenuItemsWrapper>
-//     );
-// }
 const MenuWrapper = styled.div`
     display: inline; 
     height: 100%;
@@ -149,7 +108,7 @@ export const ExpandedMenu: FC = () => {
                     element.items.map(itemElement => {
                         return (
                         itemElement.title.toLowerCase().includes(InputText.toLowerCase()) &&
-                        <ExpandedMenuItemsWrapper><img src={itemElement.icon} alt=''></img>{itemElement.title}</ExpandedMenuItemsWrapper>
+                        <Link to={itemElement.url} style={{ textDecoration: 'none' }}><ExpandedMenuItemsWrapper><Icons><img src={itemElement.icon} alt=''></img></Icons>{itemElement.title}</ExpandedMenuItemsWrapper></Link>
                         )
 
                     })])
