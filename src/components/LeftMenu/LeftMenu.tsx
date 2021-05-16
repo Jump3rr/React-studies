@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState, ChangeEvent } from "react";
 import styled from 'styled-components';
 
 import {Wrapper} from '../../styledHelpers/Components';
@@ -8,6 +8,8 @@ import {Colors} from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
+import { IAlbumReducer } from '../../reducers/albumsReducer';
+import { IPhotosReducer } from '../../reducers/photosReducer';
 import {Link} from 'react-router-dom';
 
 
@@ -21,9 +23,12 @@ const Wrapper2 = styled(Wrapper)`
 `;
 
 const About = styled(ProfileElements)`
-    height: 20%;
-
+    padding-top: 1rem;
+    height: auto;
     text-align: center;
+    & img {
+        border-radius: 50%;
+    }
 `;
 
 const ProfileDesc = styled(ProfileElements)`
@@ -73,7 +78,6 @@ const Urls = styled.div`
     text-decoration: none;
     display: inline-block;
     color: ${Colors.dark};
-
     &:hover {
         color: ${Colors.lightgrey};
         text-decoration: underline;
@@ -83,19 +87,26 @@ const Urls = styled.div`
 
 
 export const LeftMenu: FC = () => {
-    const { usersList } = useSelector<IState, IUsersReducer>(globalState => globalState.users);
+    const { usersList, albumsList, photosList } = useSelector<IState, IUsersReducer & IAlbumReducer & IPhotosReducer>(globalState => ({
+        ...globalState.users,
+        ...globalState.albums,
+        ...globalState.photos,
+    }));
+    const [currentUser, setCurrentUser] = useState<number>(0);
 
 
     return (
+        
         <Wrapper2>
+            {usersList.length > 0 && photosList.length > 0 && albumsList.length > 0 &&
             <About>
+            <img src={photosList[0].thumbnailUrl} alt=''></img>
+                <div>{usersList[currentUser].name}</div>
+                <div>{usersList[currentUser].address.city}</div>
             </About>
-            {usersList.length > 0 &&
+            }
             <ProfileDesc>
-                <OneLine>
-                {usersList[0].name}
-                {usersList[0].address.city}
-                </OneLine>
+
                 <OneLine>
                     <CustomImg src="./media/icons/network.png" />
                     Your Network
@@ -107,7 +118,6 @@ export const LeftMenu: FC = () => {
                     <AddIcons src="./media/icons/plus.png" />
                 </OneLine>
             </ProfileDesc>
-            }
             <Menu>
             <OneLine>
             <CustomImgMenu src="./media/icons/publications.png" />
