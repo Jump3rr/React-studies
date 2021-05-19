@@ -1,5 +1,6 @@
-import { FC, useState, ChangeEvent } from "react";
+import { FC, useState, useEffect, ChangeEvent } from "react";
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {ProfileElements} from '../../styledHelpers/Components';
@@ -8,9 +9,11 @@ import {Colors} from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
-import { IAlbumReducer } from '../../reducers/albumsReducer';
+import { ILocationReducer } from '../../reducers/locationsReducer';
 import { IPhotosReducer } from '../../reducers/photosReducer';
 import {Link} from 'react-router-dom';
+import { getUsers } from '../../actions/usersActions';
+import { cpuUsage } from "node:process";
 
 
 const Wrapper2 = styled(Wrapper)`
@@ -85,24 +88,23 @@ const Urls = styled.div`
 `;
 
 
-
 export const LeftMenu: FC = () => {
-    const { usersList, albumsList, photosList } = useSelector<IState, IUsersReducer & IAlbumReducer & IPhotosReducer>(globalState => ({
+    const { usersList, locationsList, photosList } = useSelector<IState, IUsersReducer & ILocationReducer & IPhotosReducer>(globalState => ({
         ...globalState.users,
         ...globalState.albums,
         ...globalState.photos,
     }));
     const [currentUser, setCurrentUser] = useState<number>(0);
-
+    
 
     return (
-        
         <Wrapper2>
-            {usersList.length > 0 && photosList.length > 0 && albumsList.length > 0 &&
+            {usersList?.length > 0 && //photosList?.length > 0 && locationsList?.length > 0 &&
             <About>
-            <img src={photosList[0].thumbnailUrl} alt=''></img>
-                <div>{usersList[currentUser].name}</div>
-                <div>{usersList[currentUser].address.city}</div>
+            <img src={usersList[0].picture} alt=''></img>
+                <div>{usersList[0].firstName} {usersList[0].lastName}</div>
+                {console.log(usersList[0])}
+                
             </About>
             }
             <ProfileDesc>

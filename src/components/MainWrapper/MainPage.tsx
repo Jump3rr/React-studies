@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useDispatch } from 'react-redux';
 import { getUsers } from '../../actions/usersActions';
-import { getAlbums } from '../../actions/albumsActions';
+import { getLocations } from '../../actions/locationsActions';
 import { getPhotos } from '../../actions/photosActions';
 
 import {Wrapper} from '../../styledHelpers/Components';
@@ -35,7 +35,7 @@ const StyledSwitch = styled.div`
     width: 80%;
 `;
 type GetUsers = ReturnType<typeof getUsers>;
-type GetAlbums = ReturnType<typeof getAlbums>;
+type GetLocations = ReturnType<typeof getLocations>;
 type GetPhotos = ReturnType<typeof getPhotos>;
 
 
@@ -43,10 +43,9 @@ export const MainPage: FC = () => {
         const dispatch = useDispatch();
         useEffect(() => {
             dispatch<GetUsers>(getUsers());
-            dispatch<GetAlbums>(getAlbums());
+            dispatch<GetLocations>(getLocations());
             dispatch<GetPhotos>(getPhotos());
         }, []);
-
 
     return (
         <Router>
