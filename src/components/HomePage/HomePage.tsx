@@ -5,6 +5,7 @@ import {PageElements, Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import {LatestPublications} from './LatestPublications';
 import {Workspaces} from './Workspaces';
+import { Resume } from './Resume';
 
 const Wrapper2 = styled(PageElements)`
     height: auto;
@@ -15,8 +16,10 @@ export const HomePage: FC = () => {
     return (
         <Wrapper2>
             <LatestPublications />
-            <h2>Workspaces</h2>
             <Workspaces />
+            <Resume />
+            {/* <Resume perPage={1} />
+            {document.getElementById('react-paginate')} */}
         </Wrapper2>
     );
 };

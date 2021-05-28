@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
 import { ILocationReducer } from '../../reducers/locationsReducer';
-import { IPhotosReducer } from '../../reducers/photosReducer';
+import { IPostReducer } from '../../reducers/postsReducer';
 import {Link} from 'react-router-dom';
 import { getUsers } from '../../actions/usersActions';
 import { cpuUsage } from "node:process";
@@ -89,12 +89,12 @@ const Urls = styled.div`
 
 
 export const LeftMenu: FC = () => {
-    const { usersList, locationsList, photosList } = useSelector<IState, IUsersReducer & ILocationReducer & IPhotosReducer>(globalState => ({
+    const { usersList, locationsList, postsList } = useSelector<IState, IUsersReducer & ILocationReducer & IPostReducer>(globalState => ({
         ...globalState.users,
         ...globalState.albums,
-        ...globalState.photos,
+        ...globalState.posts,
     }));
-    const [currentUser, setCurrentUser] = useState<number>(0);
+    //const [currentUser, setCurrentUser] = useState<number>(0);
     
 
     return (

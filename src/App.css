@@ -27,6 +27,26 @@
 .App-link {
   color: #61dafb;
 }
+.paginationBttns {
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.paginationBttns a {
+  padding: 2px;
+  margin: 4px;
+
+  color: #2b2eff;
+  cursor: pointer;
+}
+.paginationBttns :hover {
+  color: #000000;
+}
+.paginationActive a {
+  background-color: #2b2eff;
+  color: #ffffff;
+}
 
 @keyframes App-logo-spin {
   from {

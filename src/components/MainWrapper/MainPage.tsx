@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { getUsers } from '../../actions/usersActions';
 import { getLocations } from '../../actions/locationsActions';
-import { getPhotos } from '../../actions/photosActions';
+import { getPosts } from '../../actions/postsActions';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
@@ -23,7 +23,7 @@ import {
 const Wrapper2 = styled(Wrapper)`
     width: 100%;
     padding: 0;
-    height: 800px;
+    height: auto;
     text-align: center;
     display: inline-flex;
     margin-top: 10.4vh;
@@ -36,7 +36,7 @@ const StyledSwitch = styled.div`
 `;
 type GetUsers = ReturnType<typeof getUsers>;
 type GetLocations = ReturnType<typeof getLocations>;
-type GetPhotos = ReturnType<typeof getPhotos>;
+type GetPosts = ReturnType<typeof getPosts>;
 
 
 export const MainPage: FC = () => {
@@ -44,7 +44,7 @@ export const MainPage: FC = () => {
         useEffect(() => {
             dispatch<GetUsers>(getUsers());
             dispatch<GetLocations>(getLocations());
-            dispatch<GetPhotos>(getPhotos());
+            dispatch<GetPosts>(getPosts());
         }, []);
 
     return (
