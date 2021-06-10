@@ -87,13 +87,18 @@ export const ExpandedMenu: FC = () => {
         const text = e.target.value;
         setInputText(text);
     }
-
+        const [selectedImg, setImg] = useState('./media/icons/house2.png');
+        const [selectedSpan, setSpan] = useState('Home');
+        const handleClick = (source: string, title: string) => {
+            setImg(source);
+            setSpan(title);
+        }
 
 	return (
         <MenuWrapper ref={wrapperRef}>
         <MenuLeft onClick={menuHandler}>
-            <img src="./media/icons/house2.png" alt="" />
-            <span>Home</span>
+            <img src={selectedImg} alt="" />
+            {selectedSpan}
         <ExpandedLeftSide>
             <img className="arrow-icon" src="media/icons/arrow-down.png" alt="arrow down"/>
         </ExpandedLeftSide>
@@ -108,7 +113,7 @@ export const ExpandedMenu: FC = () => {
                     element.items.map(itemElement => {
                         return (
                         itemElement.title.toLowerCase().includes(InputText.toLowerCase()) &&
-                        <Link to={itemElement.url} style={{ textDecoration: 'none' }}><ExpandedMenuItemsWrapper><Icons><img src={itemElement.icon} alt=''></img></Icons>{itemElement.title}</ExpandedMenuItemsWrapper></Link>
+                        <Link to={itemElement.url} style={{ textDecoration: 'none' }}><ExpandedMenuItemsWrapper onClick={() => handleClick(itemElement.icon, itemElement.title)}><Icons><img src={itemElement.icon} alt=''></img></Icons>{itemElement.title}</ExpandedMenuItemsWrapper></Link>
                         )
 
                     })])

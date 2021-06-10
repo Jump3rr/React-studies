@@ -101,14 +101,14 @@ export const LeftMenu: FC = () => {
         <Wrapper2>
             {usersList?.length > 0 && //photosList?.length > 0 && locationsList?.length > 0 &&
             <About>
+            <Link to='/Profile'>
             <img src={usersList[0].picture} alt=''></img>
                 <div>{usersList[0].firstName} {usersList[0].lastName}</div>
                 {console.log(usersList[0])}
-                
+            </Link>
             </About>
             }
             <ProfileDesc>
-
                 <OneLine>
                     <CustomImg src="./media/icons/network.png" />
                     Your Network

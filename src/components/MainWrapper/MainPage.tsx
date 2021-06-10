@@ -11,6 +11,7 @@ import {Colors} from '../../styledHelpers/Colors';
 import {LeftMenu} from '../LeftMenu/LeftMenu';
 import {TopBar} from '../TopNav/TopBar';
 import {Entities} from '../Entities/Entities';
+import {Profile} from '../Profile/Profile';
 import {HomePage} from '../HomePage/HomePage';
 import {
     BrowserRouter as Router,
@@ -18,6 +19,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+
 
 
 const Wrapper2 = styled(Wrapper)`
@@ -59,6 +61,9 @@ export const MainPage: FC = () => {
                     </Route>
                     <Route path="/" exact>
                         <HomePage />
+                    </Route>
+                    <Route path="/profile" exact>
+                        <Profile />
                     </Route>
                     </Switch>
                 </StyledSwitch>
