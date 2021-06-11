@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 
 import { IUsersReducer } from '../../reducers/usersReducer';
-import { ILocationReducer } from '../../reducers/locationsReducer';
 import { IPostReducer } from '../../reducers/postsReducer';
 
 const Wrapper2 = styled(PageElements)`
@@ -83,9 +82,8 @@ const PostPhotoAuthor = styled.img`
 
 export const LatestPublications: FC = () => {
 
-    const { usersList, postsList } = useSelector<IState, IUsersReducer & ILocationReducer & IPostReducer>(globalState => ({
+    const { usersList, postsList } = useSelector<IState, IUsersReducer & IPostReducer>(globalState => ({
         ...globalState.users,
-        ...globalState.albums,
         ...globalState.posts,
     }));
 

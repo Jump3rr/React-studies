@@ -1,4 +1,4 @@
-import { ISingleUser } from "./users";
+import { ISingleUser } from "./user";
 
 export interface ISinglePost {
     text: string;

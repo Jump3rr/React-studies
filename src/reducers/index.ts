@@ -1,17 +1,17 @@
 import {combineReducers} from 'redux';
 
 import users, { IUsersReducer } from './usersReducer';
-import locations, { ILocationReducer } from './locationsReducer';
 import posts, { IPostReducer } from './postsReducer';
+import fullUsers, {IFullUsersReducer} from './fullUsersReducer';
 
 export default combineReducers({
     users,
-    locations,
     posts,
+    fullUsers,
 })
 
 export interface IState {
     users: IUsersReducer;
-    albums: ILocationReducer;
     posts: IPostReducer;
+    fullUsers: IFullUsersReducer;
 }

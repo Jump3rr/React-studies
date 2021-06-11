@@ -9,7 +9,6 @@ import {Colors} from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
-import { ILocationReducer } from '../../reducers/locationsReducer';
 import { IPostReducer } from '../../reducers/postsReducer';
 import {Link} from 'react-router-dom';
 import { getUsers } from '../../actions/usersActions';
@@ -89,9 +88,8 @@ const Urls = styled.div`
 
 
 export const LeftMenu: FC = () => {
-    const { usersList, locationsList, postsList } = useSelector<IState, IUsersReducer & ILocationReducer & IPostReducer>(globalState => ({
+    const { usersList, postsList } = useSelector<IState, IUsersReducer & IPostReducer>(globalState => ({
         ...globalState.users,
-        ...globalState.albums,
         ...globalState.posts,
     }));
     //const [currentUser, setCurrentUser] = useState<number>(0);
@@ -104,7 +102,6 @@ export const LeftMenu: FC = () => {
             <Link to='/Profile'>
             <img src={usersList[0].picture} alt=''></img>
                 <div>{usersList[0].firstName} {usersList[0].lastName}</div>
-                {console.log(usersList[0])}
             </Link>
             </About>
             }

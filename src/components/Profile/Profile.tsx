@@ -3,10 +3,19 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
+import { IFullUsersReducer } from '../../reducers/fullUsersReducer';
+import { getFullUsers } from '../../actions/fullUsersActions';
 import {UserInfo} from './UserInfo';
-
+import { useDispatch } from 'react-redux';
 import {PageElements, Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
+import {Specialities} from './Specialities';
+import {PanelInformations} from './PanelInformations';
+import {Services} from './Services';
+import {Propsals} from './Propsals';
+import {Reviews} from './Reviews';
+import {FeesAmount} from './FeesAmount';
+import { isEmptyObject } from 'jquery';
 
 const Wrapper2 = styled(PageElements)`
     height: auto;
@@ -14,33 +23,44 @@ const Wrapper2 = styled(PageElements)`
     background-color: white;
     width: 80%;
 `;
+const EditButton = styled.div`
+    text-align: right;
+`;
 
 export const Profile: FC = () => {
-    const { usersList } = useSelector<IState, IUsersReducer>(globalState => ({
+    const { usersList, fullUsersList } = useSelector<IState, IUsersReducer & IFullUsersReducer>(globalState => ({
         ...globalState.users,
+        ...globalState.fullUsers,
     }));
-    //////TODO: pobieranie dodatkowych danych z api (userlocation) i danych szczegółowych dla danego uzytkownika
     const [isInEditMode, editPage] = useState(false);
 
     return (
         <Wrapper2>
-        {usersList?.length > 0 &&
-        <div>{console.log(usersList[0])}
+            {/* {console.log(typeof(fullUsersList[0]))} */}
+        {/* {fullUsersList?.length > 0 && */}
         <UserInfo 
-            id={usersList[0].id}
-            title={usersList[0].title}
-            firstName={usersList[0].firstName}
-            lastName={usersList[0].lastName}
-            gender={usersList[0].gender}
-            email={usersList[0].email}
-            dateOfBirth={usersList[0].dateOfBirth}
-            registerDate={usersList[0].registerDate}
-            phone={usersList[0].phone}
-            picture={usersList[0].picture}
-            location={usersList[0].location}
+            id={fullUsersList?.id}
+            title={fullUsersList?.title}
+            firstName={fullUsersList?.firstName}
+            lastName={fullUsersList?.lastName}
+            gender={fullUsersList?.gender}
+            email={fullUsersList?.email}
+            dateOfBirth={fullUsersList?.dateOfBirth}
+            registerDate={fullUsersList?.registerDate}
+            phone={fullUsersList?.phone}
+            picture={fullUsersList?.picture}
+            location={fullUsersList?.location}
         />
-        </div>
-        }
+        <EditButton onClick={() => {return editPage(!isInEditMode)}}>EDIT</EditButton>
+        <Specialities isInEditMode={isInEditMode}/>
+        <PanelInformations isInEditMode={isInEditMode}/>
+        <Services 
+            isInEditMode={isInEditMode}
+            user={usersList}
+        />
+        <Propsals isInEditMode={isInEditMode} />
+        <Reviews isInEditMode={isInEditMode} />
+        <FeesAmount isInEditMode={isInEditMode} />
         </Wrapper2>
     );
 };

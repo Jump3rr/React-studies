@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
-import {ISingleUser} from '../../entities/users';
+import {ISingleUser} from '../../entities/user';
+import {IFullUser} from '../../entities/fullUser';
 import {Colors} from '../../styledHelpers/Colors';
 
 const Options = styled.span`
@@ -25,19 +26,39 @@ const AboutUser = styled.span`
     text-align: left;
 `;
 
-export const UserInfo: FC<ISingleUser> = (props) => {
+export const UserInfo: FC<IFullUser> = (props) => {
     const [isInEditMode, editPage] = useState(false);
 
     const [user, setUser] = useState({
         firstName: props?.firstName,
         lastName: props?.lastName,
         picture: props?.picture,
-        email: props?.email
+        email: props?.email,
+        id: props?.id,
+        title: props?.title,
+        gender: props?.gender,
+        dateOfBirth: props?.dateOfBirth,
+        registerDate: props?.registerDate,
+        phone: props?.phone,
+        location: props?.location,
+        city: props?.location.city,
+        state: props?.location.state,
+        street: props?.location.street,
+        country: props?.location.country,
+        timezone: props?.location.timezone,
+        // location: {
+        //     city: props?.location.city,
+        //     state: props?.location.state,
+        //     street: props?.location.street,
+        //     country: props?.location.country,
+        //     timezone: props?.location.timezone,
+        // }
     })
 
     return (
         <div>
             <Options>Message | Create a request | Add to a cluster | X</Options>
+            {user.firstName !== '' &&
             <About> 
                 <img src={user.picture} alt=""/>
                 <AboutUser>
@@ -46,10 +67,11 @@ export const UserInfo: FC<ISingleUser> = (props) => {
                             <span>
                             <input type='text' value={user.firstName} placeholder="First name" onChange={e => setUser({...user, firstName: e.target.value})} />
                             <input type='text' value={user.lastName} placeholder="Last name" onChange={e => setUser({...user, lastName: e.target.value})} />
+                            <input type='text' value={user.location.city} placeholder="City" onChange={e => setUser({...user, city: e.target.value})} />
                             </span>
                         )
                     :   <span>{user.firstName} {user.lastName}
-                    <div>LOCATION</div></span>
+                    <div>{user.location.city}</div></span>
                     }
                 </AboutUser>
                 <Contact>
@@ -57,15 +79,17 @@ export const UserInfo: FC<ISingleUser> = (props) => {
                     {isInEditMode ? (
                     <div>
                         <input type='text' value={user.email} placeholder="E-mail" onChange={e => setUser({...user, email: e.target.value})} />
+                        <input type='text' value={user.phone} placeholder="Phone" onChange={e => setUser({...user, phone: e.target.value})} />
                     </div>
                     )
                     :<div>
                         <div>{user.email}</div>
-                        <div>Phone</div>
+                        <div>{user.phone}</div>
                     </div>
                     }
                 </Contact>
             </About>
+            }
         </div>
     );
 };

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import { useDispatch } from 'react-redux';
 import { getUsers } from '../../actions/usersActions';
-import { getLocations } from '../../actions/locationsActions';
 import { getPosts } from '../../actions/postsActions';
+import { getFullUsers } from '../../actions/fullUsersActions';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
@@ -37,16 +37,16 @@ const StyledSwitch = styled.div`
     width: 80%;
 `;
 type GetUsers = ReturnType<typeof getUsers>;
-type GetLocations = ReturnType<typeof getLocations>;
 type GetPosts = ReturnType<typeof getPosts>;
+type GetFullUsers = ReturnType<typeof getFullUsers>;
 
 
 export const MainPage: FC = () => {
         const dispatch = useDispatch();
         useEffect(() => {
             dispatch<GetUsers>(getUsers());
-            dispatch<GetLocations>(getLocations());
             dispatch<GetPosts>(getPosts());
+            dispatch<GetFullUsers>(getFullUsers());
         }, []);
 
     return (
