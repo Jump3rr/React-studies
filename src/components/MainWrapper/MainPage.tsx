@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getUsers } from '../../actions/usersActions';
 import { getPosts } from '../../actions/postsActions';
 import { getFullUsers } from '../../actions/fullUsersActions';
+import { getPhotos } from '../../actions/photosActions';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
@@ -39,6 +40,7 @@ const StyledSwitch = styled.div`
 type GetUsers = ReturnType<typeof getUsers>;
 type GetPosts = ReturnType<typeof getPosts>;
 type GetFullUsers = ReturnType<typeof getFullUsers>;
+type GetPhotos = ReturnType<typeof getPhotos>;
 
 
 export const MainPage: FC = () => {
@@ -47,6 +49,7 @@ export const MainPage: FC = () => {
             dispatch<GetUsers>(getUsers());
             dispatch<GetPosts>(getPosts());
             dispatch<GetFullUsers>(getFullUsers());
+            dispatch<GetPhotos>(getPhotos());
         }, []);
 
     return (

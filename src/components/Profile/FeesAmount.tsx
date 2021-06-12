@@ -24,7 +24,7 @@ const Title = styled.span`
     font-weight: bold;
 `;
 const OneColumn = styled.div`
-    width: 15%;
+    width: 20%;
     input {
         width: 90%;
     }
