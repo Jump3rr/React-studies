@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { IState } from '../../reducers';
 
@@ -8,6 +8,7 @@ import { IPhotosReducer } from '../../reducers/photosReducer';
 import {PageElements, Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import { IPhoto } from '../../entities/photos';
+import { SearchInput } from '../common/SearchInput';
 
 const Wrapper2 = styled(PageElements)`
     height: auto;
@@ -62,6 +63,34 @@ export const Entities: FC = () => {
         }
         return elements;
     }
+    const [InputText, setInputText] = useState<string>('');
+
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.target.value;
+        setInputText(text);
+    }
+
+    const FilterEntities = (list: any, filter: string) => {
+        //let filteredElements = [];
+        let elements = [];
+        let filtered:JSX.Element[] = [];
+        for(let i=0; i<40; i++) {
+            elements.push(<OneEntity 
+            src={list[i].url}
+            title={list[i].title}
+            />)
+        }
+        elements.map((el:any) => {
+            return (el.props.title.toLowerCase().includes(filter.toLowerCase()) &&                
+                filtered.push(<OneEntity key={el?.props?.src}
+                    src={el?.props?.src}
+                    title={el?.props?.title} 
+                    />)
+                )
+            }
+        )
+        return filtered;
+    }
 
     return (
         <Wrapper2>
@@ -85,22 +114,20 @@ export const Entities: FC = () => {
                     <div>Share</div>
                 </EntitiesOptions>
                 <EntitiesOptions>
-                    <div>Search...</div>
+                    <input type="text" value={InputText} onChange={inputHandler} />
                     <div>Followed</div>
                 </EntitiesOptions>
             </EntitiesMenu>
-
-            {isMosaicView ?
-                <EntitiesElementsMosaic>
-                    {photosList.length>0 &&
-                        RenderEntities(photosList)
-                    }
+            {photosList.length>0 && 
+            (
+            isMosaicView ?
+                <EntitiesElementsMosaic>                    
+                    {FilterEntities(photosList, InputText)}
                 </EntitiesElementsMosaic>:
                 <EntitiesElementsList>
-                    {photosList.length>0 &&
-                        RenderEntities(photosList)
-                    }
+                    {FilterEntities(photosList, InputText)}
                 </EntitiesElementsList>
+            )
             }
         </Wrapper2>
     );

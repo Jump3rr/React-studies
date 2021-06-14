@@ -7,6 +7,7 @@ import {Colors} from '../../styledHelpers/Colors';
 import {TopBarSides} from '../../styledHelpers/Components';
 import { TextField, InputAdornment } from "@material-ui/core";
 import {Link} from 'react-router-dom';
+import { SearchInput } from '../common/SearchInput';
 
 const Wrapper2 = styled(Wrapper)`
     position: fixed;
@@ -94,18 +95,7 @@ export const TopBar: FC = () => {
                     </MenuWrapper> */}
                 </LeftSide>
                     <InputWrapper>
-                        <TextField2
-                        id="standard-bare"
-                        placeholder="Search"
-                        margin="normal"
-                        InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="start">
-                            <SearchIcon src="../../media/icons/search.png" alt="" title=""/>
-                            </InputAdornment>
-                        )
-                        }}
-                        />
+                        <SearchInput />
                     </InputWrapper>
                 <RightSide>
                     <CustomImg src="./media/icons/house.png" />

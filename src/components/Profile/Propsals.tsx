@@ -41,6 +41,7 @@ const MoreLink = styled.div`
     margin: 10px;
     text-align: right;
     width: 90%;
+    
 `;
 
 interface IProps {
