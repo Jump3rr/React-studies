@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 import { IState } from '../../reducers';
 
@@ -9,6 +9,8 @@ import {PageElements, Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import { IPhoto } from '../../entities/photos';
 import { SearchInput } from '../common/SearchInput';
+import {Filters} from './Filters';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 
 const Wrapper2 = styled(PageElements)`
     height: auto;
@@ -45,6 +47,48 @@ const EntitiesOptions = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 10px;
+    & > div {
+        margin: 0 10px 0 10px;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+`;
+const Views = styled.span`
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+    &:hover {
+        background-color: ${Colors.lightblue};
+        cursor: pointer;
+    }
+    &:active {
+        background-color: ${Colors.blue};
+    }
+`;
+const SelectFirst = styled.select`
+    background-color: ${Colors.lightblue};
+    border-color: ${Colors.lightblue};
+    color: ${Colors.blue};
+    background-image: url('../media/icons/target.png');
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 15%;
+    padding: 5px 0px 5px 25px;
+    border-radius: 7px;
+`;
+const SelectSecond = styled.select`
+    border-color: ${Colors.blue};
+    color: ${Colors.blue};
+    background-image: url('../media/icons/followed.png');
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 8%;
+    padding: 5px 0px 5px 25px;
+    border-radius: 3px;
 `;
 
 export const Entities: FC = () => {
@@ -52,83 +96,120 @@ export const Entities: FC = () => {
         ...globalState.photos,
     }));
     const [isMosaicView, setView] = useState(true);
-
-    const RenderEntities = (list:IPhoto[]) => {
-        let elements = [];
-        for(let i=0; i<40; i++) {
-            elements.push(<OneEntity 
-            src={list[i].url}
-            title={list[i].title}
-            />)
-        }
-        return elements;
-    }
     const [InputText, setInputText] = useState<string>('');
+    const [showFilters, setShowFilters] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const handleFullScreen = useFullScreenHandle();
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const text = e.target.value;
         setInputText(text);
     }
 
-    const FilterEntities = (list: any, filter: string) => {
-        //let filteredElements = [];
-        let elements = [];
-        let filtered:JSX.Element[] = [];
-        for(let i=0; i<40; i++) {
-            elements.push(<OneEntity 
-            src={list[i].url}
-            title={list[i].title}
-            />)
-        }
-        elements.map((el:any) => {
-            return (el.props.title.toLowerCase().includes(filter.toLowerCase()) &&                
-                filtered.push(<OneEntity key={el?.props?.src}
-                    src={el?.props?.src}
-                    title={el?.props?.title} 
-                    />)
+    const photosTrimmed = [];
+
+    for(let i=0; i<40; i++) {
+        photosTrimmed?.push(photosList?.[i])
+    }
+
+    const [currentList] = useState(photosTrimmed);
+
+    const FilterEntities = (list: IPhoto[], filter: string) => {
+        let filtered: IPhoto[] = [];
+        list?.map((el:IPhoto) => {
+            return (el?.title?.toLowerCase().includes(filter?.toLowerCase()) &&                
+                filtered.push(el)
                 )
             }
         )
         return filtered;
     }
 
+    const ShareURL = () => {
+        const el = document.createElement("input");
+        el.value = window.location.href;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        setCopied(true);
+      }
+
+    const [isSorted, setSort] = useState(false);
+
+    const SortArray = () => {
+        if (isSorted === false) {
+            setSort(true);
+            return currentList?.sort((a, b) => 
+            b?.title?.localeCompare(a?.title));
+        }
+        else {
+            setSort(false);
+            return currentList?.sort((a, b) => 
+            a?.title?.localeCompare(b?.title));
+        }
+    }
+
     return (
+        <FullScreen handle={handleFullScreen}>
         <Wrapper2>
             <TopEntitiesElement>
                 <div>
-                    <span>Entities</span>
-                    <span> SettingIcon</span>
+                    <span style={{fontWeight: 'bold', fontSize: '20px', marginRight: '10px'}}>Entities</span>
+                    <span> <img src='../media/icons/cog.png' alt="" /></span>
                 </div>
                 <div>
-                    <span onClick={() => {return (setView(true))}}>Mosaic</span>
-                    <span onClick={() => {return (setView(false))}}>List</span>
+                    <Views onClick={() => {return (setView(true))}}><img src='../media/icons/mosaic.png' alt="" /> Mosaic</Views>
+                    <Views onClick={() => {return (setView(false))}}><img src='../media/icons/list.png' alt="" /></Views>
                 </div>
             </TopEntitiesElement>
             <EntitiesMenu>
                 <EntitiesOptions>
-                    <div>All</div>
-                    <div>...</div>
-                    <div>Sort</div>
-                    <div>Filters</div>
-                    <div>Fullscreen</div>
-                    <div>Share</div>
+                    <SelectFirst>
+                        <option>All</option>
+                        <option>My</option>
+                    </SelectFirst>
+                    <div className="item"><img src='../media/icons/3-dots.png' alt="" /></div>
+                    <div onClick={SortArray}><img src='../media/icons/sort.png' alt="" /> Sort</div>
+                    <div onClick={() => {return (setShowFilters(prevState => !prevState))}}><img src='../media/icons/filter.png' alt="" /> Filters</div>
+                    <div onClick={handleFullScreen.enter}><img src='../media/icons/fullscreen.png' alt="" /></div>
+                    <div onClick={ShareURL}><img src='../media/icons/share.png' alt="" /> Share</div>
                 </EntitiesOptions>
                 <EntitiesOptions>
-                    <input type="text" value={InputText} onChange={inputHandler} />
-                    <div>Followed</div>
+                    <input type="text" value={InputText} onChange={inputHandler} placeholder="Search..." />
+                    <SelectSecond>
+                        <option>Followed</option>
+                        <option>My</option>
+                    </SelectSecond>
                 </EntitiesOptions>
             </EntitiesMenu>
+            {showFilters &&
+            <Filters />
+            }
             {photosList.length>0 && 
             (
             isMosaicView ?
-                <EntitiesElementsMosaic>                    
-                    {FilterEntities(photosList, InputText)}
+                <EntitiesElementsMosaic>               
+                    {(FilterEntities(currentList, InputText)).map((el:any) => {
+                        return (<OneEntity
+                            key={el.url}
+                            src={el.url}
+                            title={el.title} 
+                            />)
+                    })}
                 </EntitiesElementsMosaic>:
                 <EntitiesElementsList>
-                    {FilterEntities(photosList, InputText)}
+                    {(FilterEntities(currentList, InputText)).map((el:any) => {
+                        return (<OneEntity
+                            key={el.url}
+                            src={el.url}
+                            title={el.title} 
+                            />)
+                    })}
                 </EntitiesElementsList>
             )
             }
         </Wrapper2>
+        </FullScreen>
     );
 };

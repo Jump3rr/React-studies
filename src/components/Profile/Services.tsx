@@ -51,18 +51,18 @@ export const Services: FC<IProps> = (props) => {
         about: 'Corporate M&A and international acquisitions',
     })
     const [profile, setProfile] = useState({
-        idFirst: props.user[1].id,
-        firstNameFirst: props.user[1].firstName,
-        lastNameFirst: props.user[1].lastName,
-        emailFirst: props.user[1].email,
-        pictureFirst: props.user[1].picture,
-        titleFirst: props.user[1].title,
-        idSecond: props.user[2].id,
-        firstNameSecond: props.user[2].firstName,
-        lastNameSecond: props.user[2].lastName,
-        emailSecond: props.user[2].email,
-        pictureSecond: props.user[2].picture,
-        titleSecond: props.user[2].title,
+        idFirst: props.user[1]?.id,
+        firstNameFirst: props.user[1]?.firstName,
+        lastNameFirst: props.user[1]?.lastName,
+        emailFirst: props.user[1]?.email,
+        pictureFirst: props.user[1]?.picture,
+        titleFirst: props.user[1]?.title,
+        idSecond: props.user[2]?.id,
+        firstNameSecond: props.user[2]?.firstName,
+        lastNameSecond: props.user[2]?.lastName,
+        emailSecond: props.user[2]?.email,
+        pictureSecond: props.user[2]?.picture,
+        titleSecond: props.user[2]?.title,
     })
 
     return (
