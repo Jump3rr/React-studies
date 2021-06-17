@@ -11,6 +11,7 @@ import { IPhoto } from '../../entities/photos';
 import { SearchInput } from '../common/SearchInput';
 import {Filters} from './Filters';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import {VerticalLine} from '../common/verticalLine';
 
 const Wrapper2 = styled(PageElements)`
     height: auto;
@@ -170,13 +171,17 @@ export const Entities: FC = () => {
                         <option>My</option>
                     </SelectFirst>
                     <div className="item"><img src='../media/icons/3-dots.png' alt="" /></div>
+                    <VerticalLine />
                     <div onClick={SortArray}><img src='../media/icons/sort.png' alt="" /> Sort</div>
                     <div onClick={() => {return (setShowFilters(prevState => !prevState))}}><img src='../media/icons/filter.png' alt="" /> Filters</div>
+                    <VerticalLine />
                     <div onClick={handleFullScreen.enter}><img src='../media/icons/fullscreen.png' alt="" /></div>
+                    <VerticalLine />
                     <div onClick={ShareURL}><img src='../media/icons/share.png' alt="" /> Share</div>
                 </EntitiesOptions>
                 <EntitiesOptions>
                     <input type="text" value={InputText} onChange={inputHandler} placeholder="Search..." />
+                    <VerticalLine />
                     <SelectSecond>
                         <option>Followed</option>
                         <option>My</option>

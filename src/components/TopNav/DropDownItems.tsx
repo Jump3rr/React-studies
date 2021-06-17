@@ -57,6 +57,31 @@ export const ITEMS: ISectionsItems[] = [
                 title: 'Real estate contracts',
                 url: '/'
             },
+            {
+                icon: '../../media/icons/house2.png',
+                title: 'Client contract',
+                url: '/'
+            },
+            {
+                icon: '../../media/icons/house2.png',
+                title: 'Supplier contract',
+                url: '/'
+            },
+            {
+                icon: '../../media/icons/entities2.png',
+                title: 'Corporate',
+                url: '/'
+            },
+            {
+                icon: '../../media/icons/publications.png',
+                title: 'Group Norms',
+                url: '/'
+            },
+            {
+                icon: '../../media/icons/house2.png',
+                title: 'Real estate contracts',
+                url: '/'
+            },
         ]
     },
     {

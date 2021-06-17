@@ -16,6 +16,7 @@ import {Propsals} from './Propsals';
 import {Reviews} from './Reviews';
 import {FeesAmount} from './FeesAmount';
 import { isEmptyObject } from 'jquery';
+import {HorizontalLine} from '../common/horizontalLine';
 
 const Wrapper2 = styled(PageElements)`
     height: auto;
@@ -25,6 +26,7 @@ const Wrapper2 = styled(PageElements)`
 `;
 const EditButton = styled.div`
     text-align: right;
+    cursor: pointer;
 `;
 
 export const Profile: FC = () => {
@@ -51,15 +53,20 @@ export const Profile: FC = () => {
             picture={fullUsersList?.picture}
             location={fullUsersList?.location}
         />
-        <EditButton onClick={() => {return editPage(!isInEditMode)}}>EDIT</EditButton>
+        <HorizontalLine />
+        <EditButton onClick={() => {return editPage(!isInEditMode)}}><img src='../media/icons/edit.png' alt="" /></EditButton>
         <Specialities isInEditMode={isInEditMode}/>
+        <HorizontalLine />
         <PanelInformations isInEditMode={isInEditMode}/>
         <Services 
             isInEditMode={isInEditMode}
             user={usersList}
         />
+        <HorizontalLine />
         <Propsals isInEditMode={isInEditMode} />
+        <HorizontalLine />
         <Reviews isInEditMode={isInEditMode} />
+        <HorizontalLine />
         <FeesAmount isInEditMode={isInEditMode} />
         </Wrapper2>
     );

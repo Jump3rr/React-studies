@@ -78,7 +78,7 @@ export const Workspaces: FC = () => {
                     <OneContract>
                         <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
                         <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Client contract</Title>
+                        <Title>Supplier contract</Title>
                         <Description>
                             <DescIcons src="./media/photos/iconContract.png"></DescIcons>
                             Contract &nbsp;&nbsp;|    
@@ -90,7 +90,7 @@ export const Workspaces: FC = () => {
                     <OneContract>
                         <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
                         <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Client contract</Title>
+                        <Title>Corporate</Title>
                         <Description>
                             <DescIcons src="./media/photos/iconContract.png"></DescIcons>
                             Contract &nbsp;&nbsp;|    
@@ -102,7 +102,7 @@ export const Workspaces: FC = () => {
                     <OneContract>
                         <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
                         <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Client contract</Title>
+                        <Title>Group Norms</Title>
                         <Description>
                             <DescIcons src="./media/photos/iconContract.png"></DescIcons>
                             Contract &nbsp;&nbsp;|    
@@ -114,24 +114,12 @@ export const Workspaces: FC = () => {
                     <OneContract>
                         <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
                         <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Client contract</Title>
+                        <Title>Real estate contracts</Title>
                         <Description>
                             <DescIcons src="./media/photos/iconContract.png"></DescIcons>
                             Contract &nbsp;&nbsp;|    
                             <DescIcons src="./media/icons/people.png"></DescIcons>
                             35 Users
-                        </Description>
-                        <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 4 days ago</Description>
-                    </OneContract>
-                    <OneContract>
-                        <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
-                        <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Client contract</Title>
-                        <Description>
-                            <DescIcons src="./media/photos/iconContract.png"></DescIcons>
-                            Contract &nbsp;&nbsp;|    
-                            <DescIcons src="./media/icons/people.png"></DescIcons>
-                            25 Users
                         </Description>
                         <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 4 days ago</Description>
                     </OneContract>

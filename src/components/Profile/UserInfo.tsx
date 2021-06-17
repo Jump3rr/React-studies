@@ -9,21 +9,31 @@ import {Colors} from '../../styledHelpers/Colors';
 
 const Options = styled.span`
     float: right;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
 `;
 const About = styled.div`
     display: inline-flex;
+    float: center;
     margin-top: 20px;
     width: 100%;
+    padding-left: 3%;
 `;
 const Contact = styled.div`
     text-align: right;
     align-items: right;
     display: inline-block;
     width:100%;
+    padding-right: 3%;
 `;
 const AboutUser = styled.span`
     width: 50%;
     text-align: left;
+`;
+const ProfilePicture = styled.img`
+    border-radius: 50%;
+    width: 10%;
 `;
 
 export const UserInfo: FC<IFullUser> = (props) => {
@@ -57,10 +67,15 @@ export const UserInfo: FC<IFullUser> = (props) => {
 
     return (
         <div>
-            <Options>Message | Create a request | Add to a cluster | X</Options>
+            <Options>
+                <span><img src='../media/icons/message.png' alt="" /> Message </span>
+                <span><img src='../media/icons/request.png' alt="" /> Create a request</span>
+                <span><img src='../media/icons/workCluster.png' alt="" /> Add to a cluster</span>
+                <span><img src='../media/icons/x.png' alt="" /></span>
+            </Options>
             {user.firstName !== '' &&
             <About> 
-                <img src={user.picture} alt=""/>
+                <ProfilePicture src={user.picture} alt=""/>
                 <AboutUser>
                     { isInEditMode 
                         ?   (
@@ -70,12 +85,12 @@ export const UserInfo: FC<IFullUser> = (props) => {
                             <input type='text' value={user.location.city} placeholder="City" onChange={e => setUser({...user, city: e.target.value})} />
                             </span>
                         )
-                    :   <span>{user.firstName} {user.lastName}
+                    :   <span style={{fontWeight: "bold"}}>{user.firstName} {user.lastName}
                     <div>{user.location.city}</div></span>
                     }
                 </AboutUser>
                 <Contact>
-                    <div onClick={()=> {return editPage(!isInEditMode)}}>EDIT</div>
+                    <div onClick={()=> {return editPage(!isInEditMode)}} style={{cursor:"pointer"}}><img src='../media/icons/edit.png' alt="" /></div>
                     {isInEditMode ? (
                     <div>
                         <input type='text' value={user.email} placeholder="E-mail" onChange={e => setUser({...user, email: e.target.value})} />
