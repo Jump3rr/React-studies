@@ -6,6 +6,8 @@ import { getUsers } from '../../actions/usersActions';
 import { getPosts } from '../../actions/postsActions';
 import { getFullUsers } from '../../actions/fullUsersActions';
 import { getPhotos } from '../../actions/photosActions';
+// import { setWorkspace } from '../../actions/workspaceActions'
+import { getWorkspace } from '../../actions/workspaceActions';
 
 import {Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
@@ -13,6 +15,7 @@ import {LeftMenu} from '../LeftMenu/LeftMenu';
 import {TopBar} from '../TopNav/TopBar';
 import {Entities} from '../Entities/Entities';
 import {Profile} from '../Profile/Profile';
+import {Workspaces} from '../Workspaces/Workspaces';
 import {HomePage} from '../HomePage/HomePage';
 import {
     BrowserRouter as Router,
@@ -41,6 +44,8 @@ type GetUsers = ReturnType<typeof getUsers>;
 type GetPosts = ReturnType<typeof getPosts>;
 type GetFullUsers = ReturnType<typeof getFullUsers>;
 type GetPhotos = ReturnType<typeof getPhotos>;
+// type SetWorkspace = ReturnType<typeof setWorkspace>;
+type GetWorkspace = ReturnType<typeof getWorkspace>;
 
 
 export const MainPage: FC = () => {
@@ -50,6 +55,8 @@ export const MainPage: FC = () => {
             dispatch<GetPosts>(getPosts());
             dispatch<GetFullUsers>(getFullUsers());
             dispatch<GetPhotos>(getPhotos());
+            // dispatch<SetWorkspace>(setWorkspace());
+            dispatch<GetWorkspace>(getWorkspace());
         }, []);
 
     return (
@@ -59,15 +66,18 @@ export const MainPage: FC = () => {
                 <LeftMenu />
                 <StyledSwitch>
                     <Switch>
-                    <Route path="/entities" exact>
-                        <Entities /> 
-                    </Route>
-                    <Route path="/" exact>
-                        <HomePage />
-                    </Route>
-                    <Route path="/profile" exact>
-                        <Profile />
-                    </Route>
+                        <Route path="/entities" exact>
+                            <Entities /> 
+                        </Route>
+                        <Route path="/" exact>
+                            <HomePage />
+                        </Route>
+                        <Route path="/profile" exact>
+                            <Profile />
+                        </Route>
+                        <Route path="/workspaces" exact>
+                            <Workspaces />
+                        </Route>
                     </Switch>
                 </StyledSwitch>
             </Wrapper2>

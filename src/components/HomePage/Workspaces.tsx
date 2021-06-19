@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -6,6 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 import {PageElements, Wrapper} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
+import {WorkspaceItems} from '../common/OneWorkspaceElement';
+import { Dispatch } from 'redux';
+import * as actionTypes from '../../actions/actionTypes/workspaceTypes';
+import { IWorkspace } from '../../entities/workspace';
+import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Wrapper2 = styled(PageElements)`
     height: 25vh;
@@ -16,6 +22,7 @@ const OneContract = styled.div`
     width: 10px;
     height: 25vh;
     margin: 0 -27px;
+    cursor: pointer;
 `;
 const TopImg = styled.img`
     width: 100%;
@@ -23,7 +30,7 @@ const TopImg = styled.img`
     z-index: -1;
 `;
 const IconImg = styled.img`
-    width: 25%;
+    width: 3vw;
     position: relative;
     height: auto;
     margin-left: 5%;
@@ -49,10 +56,16 @@ const DescIcons = styled.img`
     margin: 0 5% 0 5%;
 `;
 
-
-
-
 export const Workspaces: FC = () => {
+    const dispatch = useDispatch();
+
+    const setNewWorkspace = (workspace: IWorkspace) => {
+        return dispatch({
+                type: actionTypes.SET_WORKSPACE,
+                workspace
+            })
+    };
+
     var settings = {
         dots: true,
         slidesToShow: 4
@@ -63,66 +76,23 @@ export const Workspaces: FC = () => {
             <h2 style={{textAlign: "left", marginLeft: "2vw"}}>Workspaces</h2>
             <Wrapper2>
                 <Slider {...settings}>
-                    <OneContract>
-                        <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
-                        <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Client contract</Title>
-                        <Description>
-                            <DescIcons src="./media/photos/iconContract.png"></DescIcons>
-                            Contract &nbsp;&nbsp;|    
-                            <DescIcons src="./media/icons/people.png"></DescIcons>
-                            55 Users
-                        </Description>
-                        <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 2 days ago</Description>
-                    </OneContract>
-                    <OneContract>
-                        <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
-                        <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Supplier contract</Title>
-                        <Description>
-                            <DescIcons src="./media/photos/iconContract.png"></DescIcons>
-                            Contract &nbsp;&nbsp;|    
-                            <DescIcons src="./media/icons/people.png"></DescIcons>
-                            25 Users
-                        </Description>
-                        <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 2 days ago</Description>
-                    </OneContract>
-                    <OneContract>
-                        <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
-                        <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Corporate</Title>
-                        <Description>
-                            <DescIcons src="./media/photos/iconContract.png"></DescIcons>
-                            Contract &nbsp;&nbsp;|    
-                            <DescIcons src="./media/icons/people.png"></DescIcons>
-                            85 Users
-                        </Description>
-                        <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 3 days ago</Description>
-                    </OneContract>
-                    <OneContract>
-                        <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
-                        <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Group Norms</Title>
-                        <Description>
-                            <DescIcons src="./media/photos/iconContract.png"></DescIcons>
-                            Contract &nbsp;&nbsp;|    
-                            <DescIcons src="./media/icons/people.png"></DescIcons>
-                            150 Users
-                        </Description>
-                        <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 3 days ago</Description>
-                    </OneContract>
-                    <OneContract>
-                        <TopImg src="./media/photos/contract.jpg" alt=""></TopImg>
-                        <IconImg src="./media/photos/iconContract.png"></IconImg>
-                        <Title>Real estate contracts</Title>
-                        <Description>
-                            <DescIcons src="./media/photos/iconContract.png"></DescIcons>
-                            Contract &nbsp;&nbsp;|    
-                            <DescIcons src="./media/icons/people.png"></DescIcons>
-                            35 Users
-                        </Description>
-                        <Description style={{fontSize:"11px", marginLeft: "5%"}}>Last Update 4 days ago</Description>
-                    </OneContract>
+                    {WorkspaceItems.map((el) => {
+                    return(
+                            <OneContract onClick={() => setNewWorkspace(el)}>
+                            <Link to="/workspaces" >
+                            <TopImg src={el.mainImg} alt=""></TopImg>
+                            <IconImg src={el.icon}></IconImg>
+                            <Title>{el.title}</Title>
+                            <Description>
+                                <DescIcons src={el.descFirstIcon}></DescIcons>
+                                {el.descType}    
+                                <DescIcons src={el.descSecondIcon}></DescIcons>
+                                {el.descUsers}
+                            </Description>
+                            <Description style={{fontSize:"11px", marginLeft: "5%"}}>{el.updated}</Description>
+                            </Link>
+                        </OneContract>
+                    )})}
                 </Slider>
                 
             </Wrapper2>
