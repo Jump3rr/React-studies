@@ -1,13 +1,16 @@
 import { FC, useState, ChangeEvent } from "react";
 import styled from 'styled-components';
 import useDropdown from "react-dropdown-hook";
-
 import {ITEMS} from './DropDownItems';
 import {Colors} from '../../styledHelpers/Colors';
 import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
+import {IWorkspace} from '../../entities/workspace';
+import {WorkspaceItems} from '../common/OneWorkspaceElement';
+import * as actionTypes from '../../actions/actionTypes/workspaceTypes';
+import { useDispatch } from 'react-redux';
 
 const InnerWrapper = styled.div`
     width: 15%;
@@ -104,19 +107,30 @@ export const ExpandedMenu: FC = () => {
     }
     const [selectedImg, setImg] = useState('./media/icons/house2.png');
     const [selectedSpan, setSpan] = useState('Home');
-    const handleClick = (source: string, title: string) => {
+    const handleClick = (source: string, title: string, url: string, id: number) => {
         setImg(source);
         setSpan(title);
+        if(url==='/workspaces') {
+            setNewWorkspace(WorkspaceItems[id]);
+        }
     }
     const setUser = () => {
         if(ITEMS[2].items.length <= 2) {
             ITEMS[2].items.unshift({
+                id: 0,
                 title: usersList[0].firstName + ' ' + usersList[0].lastName,
                 icon: usersList[0].picture,
                 url: '/profile'
             })
         }
     }
+    const dispatch = useDispatch();
+    const setNewWorkspace = (workspace: IWorkspace) => {
+        return dispatch({
+                type: actionTypes.SET_WORKSPACE,
+                workspace
+            })
+    };
 
 	return (
         <MenuWrapper ref={wrapperRef}>
@@ -140,9 +154,34 @@ export const ExpandedMenu: FC = () => {
                     <SectionTitleItems>{element.title}</SectionTitleItems>,
                     element.items.map(itemElement => {
                         return (
-                        itemElement.title.toLowerCase().includes(InputText.toLowerCase()) &&
-                        <Link to={itemElement.url} style={{ textDecoration: 'none' }}><ExpandedMenuItemsWrapper onClick={() => handleClick(itemElement.icon, itemElement.title)}><Icons><MenuImages src={itemElement.icon} alt=''></MenuImages></Icons>{itemElement.title}</ExpandedMenuItemsWrapper></Link>
-                        )
+                          itemElement.title
+                            .toLowerCase()
+                            .includes(InputText.toLowerCase()) && (
+                            <Link
+                              to={itemElement.url}
+                              style={{ textDecoration: "none" }}
+                            >
+                              <ExpandedMenuItemsWrapper
+                                onClick={() =>
+                                  handleClick(
+                                    itemElement.icon,
+                                    itemElement.title,
+                                    itemElement.url,
+                                    itemElement.id
+                                  )
+                                }
+                              >
+                                <Icons>
+                                  <MenuImages
+                                    src={itemElement.icon}
+                                    alt=""
+                                  ></MenuImages>
+                                </Icons>
+                                {itemElement.title}
+                              </ExpandedMenuItemsWrapper>
+                            </Link>
+                          )
+                        );
 
                     })])
                     }
@@ -152,7 +191,7 @@ export const ExpandedMenu: FC = () => {
                 {ITEMS[2].items.map(itemElement => {
                         return (
                         itemElement.title.toLowerCase().includes(InputText.toLowerCase()) &&
-                        <Link to={itemElement.url} style={{ textDecoration: 'none' }}><ExpandedMenuItemsWrapper onClick={() => handleClick(itemElement.icon, itemElement.title)}><Icons><MenuImages src={itemElement.icon} alt=''></MenuImages></Icons>{itemElement.title}</ExpandedMenuItemsWrapper></Link>
+                        <Link to={itemElement.url} style={{ textDecoration: 'none' }}><ExpandedMenuItemsWrapper onClick={() => handleClick(itemElement.icon, itemElement.title, itemElement.url, itemElement.id)}><Icons><MenuImages src={itemElement.icon} alt=''></MenuImages></Icons>{itemElement.title}</ExpandedMenuItemsWrapper></Link>
                         )
 
                     })

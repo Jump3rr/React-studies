@@ -7,17 +7,17 @@ const SearchIcon = styled.img``;
 export const SearchInput: FC = () => {
 
     return (
-                <TextField
-                id="standard-bare"
-                placeholder="Search"
-                margin="normal"
-                InputProps={{
-                endAdornment: (
-                    <InputAdornment position="start">
-                    <SearchIcon src="../../media/icons/search.png" alt="" title=""/>
-                    </InputAdornment>
-                )
-                }}
-                />
-    )
+      <TextField
+        id="standard-bare"
+        placeholder="Search"
+        margin="normal"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon src="../../media/icons/search.png" alt="" title="" />
+            </InputAdornment>
+          ),
+        }}
+      />
+    );
 }

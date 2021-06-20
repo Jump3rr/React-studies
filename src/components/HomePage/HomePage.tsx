@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import {PageElements, Wrapper} from '../../styledHelpers/Components';
+import { PageElements } from "../../styledHelpers/Components";
 import {Colors} from '../../styledHelpers/Colors';
 import {LatestPublications} from './LatestPublications';
 import {Workspaces} from './Workspaces';
@@ -14,12 +14,10 @@ const Wrapper2 = styled(PageElements)`
 
 export const HomePage: FC = () => {
     return (
-        <Wrapper2>
-            <LatestPublications />
-            <Workspaces />
-            <Resume />
-            {/* <Resume perPage={1} />
-            {document.getElementById('react-paginate')} */}
-        </Wrapper2>
+      <Wrapper2>
+        <LatestPublications />
+        <Workspaces />
+        <Resume />
+      </Wrapper2>
     );
 };

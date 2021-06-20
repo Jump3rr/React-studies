@@ -1,4 +1,3 @@
-import { stringify } from 'node:querystring';
 import { Dispatch } from 'redux';
 import * as actionTypes from '../actions/actionTypes/photosTypes';
 import { IPhoto } from '../entities/photos';
@@ -12,6 +11,5 @@ export const getPhotos = (): Promise<any> => ((dispath: Dispatch) => {
                 type: actionTypes.GET_PHOTOS,
                 photosList
             })
-            console.log(photosList);
         })
 }) as any;

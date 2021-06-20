@@ -6,22 +6,19 @@ import { getUsers } from '../../actions/usersActions';
 import { getPosts } from '../../actions/postsActions';
 import { getFullUsers } from '../../actions/fullUsersActions';
 import { getPhotos } from '../../actions/photosActions';
-// import { setWorkspace } from '../../actions/workspaceActions'
 import { getWorkspace } from '../../actions/workspaceActions';
-
 import {Wrapper} from '../../styledHelpers/Components';
-import {Colors} from '../../styledHelpers/Colors';
 import {LeftMenu} from '../LeftMenu/LeftMenu';
 import {TopBar} from '../TopNav/TopBar';
 import {Entities} from '../Entities/Entities';
 import {Profile} from '../Profile/Profile';
 import {Workspaces} from '../Workspaces/Workspaces';
+import {TestPage} from '../TestPage/TestPage'; 
 import {HomePage} from '../HomePage/HomePage';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
   } from "react-router-dom";
 
 
@@ -60,27 +57,30 @@ export const MainPage: FC = () => {
         }, []);
 
     return (
-        <Router>
-             <TopBar />
-            <Wrapper2>
-                <LeftMenu />
-                <StyledSwitch>
-                    <Switch>
-                        <Route path="/entities" exact>
-                            <Entities /> 
-                        </Route>
-                        <Route path="/" exact>
-                            <HomePage />
-                        </Route>
-                        <Route path="/profile" exact>
-                            <Profile />
-                        </Route>
-                        <Route path="/workspaces" exact>
-                            <Workspaces />
-                        </Route>
-                    </Switch>
-                </StyledSwitch>
-            </Wrapper2>
-        </Router>
+      <Router>
+        <TopBar />
+        <Wrapper2>
+          <LeftMenu />
+          <StyledSwitch>
+            <Switch>
+              <Route path="/entities" exact>
+                <Entities />
+              </Route>
+              <Route path="/" exact>
+                <HomePage />
+              </Route>
+              <Route path="/profile" exact>
+                <Profile />
+              </Route>
+              <Route path="/workspaces" exact>
+                <Workspaces />
+              </Route>
+              <Route path="/test" exact>
+                <TestPage />
+              </Route>
+            </Switch>
+          </StyledSwitch>
+        </Wrapper2>
+      </Router>
     );
 };

@@ -1,7 +1,5 @@
-import { FC, useState, useEffect, ChangeEvent } from "react";
+import { FC } from "react";
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-
 import {Wrapper} from '../../styledHelpers/Components';
 import {ProfileElements} from '../../styledHelpers/Components';
 import {Icon} from '../../styledHelpers/Components';
@@ -9,11 +7,7 @@ import {Colors} from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
-import { IPostReducer } from '../../reducers/postsReducer';
 import {Link} from 'react-router-dom';
-import { getUsers } from '../../actions/usersActions';
-import { cpuUsage } from "node:process";
-
 
 const Wrapper2 = styled(Wrapper)`
     width: 18%;
@@ -88,50 +82,59 @@ const Urls = styled.div`
 
 
 export const LeftMenu: FC = () => {
-    const { usersList, postsList } = useSelector<IState, IUsersReducer & IPostReducer>(globalState => ({
+    const { usersList } = useSelector<IState, IUsersReducer>(globalState => ({
         ...globalState.users,
-        ...globalState.posts,
     }));
-    //const [currentUser, setCurrentUser] = useState<number>(0);
     
 
     return (
-        <Wrapper2>
-            {usersList?.length > 0 && //photosList?.length > 0 && locationsList?.length > 0 &&
-            <About>
-            <Link to='/Profile'>
-            <img src={usersList[0].picture} alt=''></img>
-                <div>{usersList[0].firstName} {usersList[0].lastName}</div>
+      <Wrapper2>
+        {usersList?.length > 0 && (
+          <About>
+            <Link to="/Profile">
+              <img src={usersList[0].picture} alt=""></img>
+              <div>
+                {usersList[0].firstName} {usersList[0].lastName}
+              </div>
             </Link>
-            </About>
-            }
-            <ProfileDesc>
-                <OneLine>
-                    <CustomImg src="./media/icons/network.png" />
-                    Your Network
-                    <AddIcons src="./media/icons/user-plus.png" />
-                </OneLine>
-                <OneLine>
-                    <CustomImg src="./media/icons/publications.png" />
-                    Your Publications 
-                    <AddIcons src="./media/icons/plus.png" />
-                </OneLine>
-            </ProfileDesc>
-            <Menu>
+          </About>
+        )}
+        <ProfileDesc>
+          <Link to="/test">
             <OneLine>
+              <CustomImg src="./media/icons/network.png" />
+              Your Network
+              <AddIcons src="./media/icons/user-plus.png" />
+            </OneLine>
+          </Link>
+          <Link to="/test">
+            <OneLine>
+              <CustomImg src="./media/icons/publications.png" />
+              Your Publications
+              <AddIcons src="./media/icons/plus.png" />
+            </OneLine>
+          </Link>
+        </ProfileDesc>
+        <Menu>
+          <OneLine>
             <CustomImgMenu src="./media/icons/publications.png" />
-            <Link to='/'><Urls>Publications</Urls></Link>
-            </OneLine>
-            <OneLine>
+            <Link to="/test">
+              <Urls>Publications</Urls>
+            </Link>
+          </OneLine>
+          <OneLine>
             <CustomImgMenu src="./media/icons/ecosystem.png" />
-            <Link to='/'><Urls>Ecosystem</Urls></Link>
-            </OneLine>
-            <OneLine>
+            <Link to="/test">
+              <Urls>Ecosystem</Urls>
+            </Link>
+          </OneLine>
+          <OneLine>
             <CustomImgMenu src="./media/icons/entities2.png" />
-            <Link to='/Entities'><Urls>Entities</Urls></Link>
-            </OneLine>
-            </Menu>
-            
-        </Wrapper2>
-    )
+            <Link to="/Entities">
+              <Urls>Entities</Urls>
+            </Link>
+          </OneLine>
+        </Menu>
+      </Wrapper2>
+    );
 }

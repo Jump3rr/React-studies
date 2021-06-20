@@ -1,12 +1,9 @@
-import { FC, useState, useEffect, ChangeEvent } from "react";
+import { FC } from "react";
 import styled from 'styled-components';
-
-import {PageElements, Wrapper} from '../../styledHelpers/Components';
+import {PageElements} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
-
-import { IUsersReducer } from '../../reducers/usersReducer';
 import { IPostReducer } from '../../reducers/postsReducer';
 
 const Wrapper2 = styled(PageElements)`
@@ -82,8 +79,7 @@ const PostPhotoAuthor = styled.img`
 
 export const LatestPublications: FC = () => {
 
-    const { usersList, postsList } = useSelector<IState, IUsersReducer & IPostReducer>(globalState => ({
-        ...globalState.users,
+    const { postsList } = useSelector<IState, IPostReducer>(globalState => ({
         ...globalState.posts,
     }));
 

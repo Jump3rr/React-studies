@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 
 const About = styled.div`
@@ -21,7 +21,7 @@ const ReviewsContainer = styled.div`
 `;
 
 const Title = styled.span`
-    font-weight: bold;
+  font-weight: bold;
 `;
 const OneColumn = styled.div`
     width: 15%;

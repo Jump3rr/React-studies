@@ -11,7 +11,5 @@ const Line = styled.div`
 
 export const HorizontalLine: FC = () => {
 
-    return (
-        <Line />
-    );
+    return <Line />;
 };

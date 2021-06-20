@@ -1,11 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { IState } from '../../reducers';
-import { IUsersReducer } from '../../reducers/usersReducer';
-import {ISingleUser} from '../../entities/user';
 import {IFullUser} from '../../entities/fullUser';
-import {Colors} from '../../styledHelpers/Colors';
 
 const Options = styled.span`
     float: right;
@@ -33,49 +28,55 @@ const AboutUser = styled.span`
 `;
 const ProfilePicture = styled.img`
     border-radius: 50%;
-    width: 10%;
+    width: 80%;
+`;
+const TopOptions = styled.span`
+    cursor: pointer;
 `;
 
 export const UserInfo: FC<IFullUser> = (props) => {
     const [isInEditMode, editPage] = useState(false);
 
     const [user, setUser] = useState({
-        firstName: props?.firstName,
-        lastName: props?.lastName,
-        picture: props?.picture,
-        email: props?.email,
-        id: props?.id,
-        title: props?.title,
-        gender: props?.gender,
-        dateOfBirth: props?.dateOfBirth,
-        registerDate: props?.registerDate,
-        phone: props?.phone,
-        location: props?.location,
-        city: props?.location.city,
-        state: props?.location.state,
-        street: props?.location.street,
-        country: props?.location.country,
-        timezone: props?.location.timezone,
-        // location: {
-        //     city: props?.location.city,
-        //     state: props?.location.state,
-        //     street: props?.location.street,
-        //     country: props?.location.country,
-        //     timezone: props?.location.timezone,
-        // }
-    })
+      firstName: props?.firstName,
+      lastName: props?.lastName,
+      picture: props?.picture,
+      email: props?.email,
+      id: props?.id,
+      title: props?.title,
+      gender: props?.gender,
+      dateOfBirth: props?.dateOfBirth,
+      registerDate: props?.registerDate,
+      phone: props?.phone,
+      location: props?.location,
+      city: props?.location.city,
+      state: props?.location.state,
+      street: props?.location.street,
+      country: props?.location.country,
+      timezone: props?.location.timezone,
+      // location: {
+      //     city: props?.location.city,
+      //     state: props?.location.state,
+      //     street: props?.location.street,
+      //     country: props?.location.country,
+      //     timezone: props?.location.timezone,
+      // }
+    });
 
     return (
         <div>
             <Options>
-                <span><img src='../media/icons/message.png' alt="" /> Message </span>
-                <span><img src='../media/icons/request.png' alt="" /> Create a request</span>
-                <span><img src='../media/icons/workCluster.png' alt="" /> Add to a cluster</span>
-                <span><img src='../media/icons/x.png' alt="" /></span>
+                <TopOptions><img src='../media/icons/message.png' alt="" /> Message </TopOptions>
+                <TopOptions><img src='../media/icons/request.png' alt="" /> Create a request</TopOptions>
+                <TopOptions><img src='../media/icons/workCluster.png' alt="" /> Add to a cluster</TopOptions>
+                <TopOptions><img src='../media/icons/x.png' alt="" /></TopOptions>
             </Options>
             {user.firstName !== '' &&
             <About> 
+                <div>
                 <ProfilePicture src={user.picture} alt=""/>
+                <div style={{cursor:"pointer"}}>See profile</div>
+                </div>
                 <AboutUser>
                     { isInEditMode 
                         ?   (

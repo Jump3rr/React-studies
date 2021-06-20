@@ -1,21 +1,18 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducer';
 import { IFullUsersReducer } from '../../reducers/fullUsersReducer';
-import { getFullUsers } from '../../actions/fullUsersActions';
 import {UserInfo} from './UserInfo';
-import { useDispatch } from 'react-redux';
-import {PageElements, Wrapper} from '../../styledHelpers/Components';
+import {PageElements} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import {Specialities} from './Specialities';
 import {PanelInformations} from './PanelInformations';
 import {Services} from './Services';
 import {Propsals} from './Propsals';
 import {Reviews} from './Reviews';
-import {FeesAmount} from './FeesAmount';
-import { isEmptyObject } from 'jquery';
+import { FeesAmount } from "./FeesAmount";
 import {HorizontalLine} from '../common/horizontalLine';
 
 const Wrapper2 = styled(PageElements)`
@@ -37,37 +34,38 @@ export const Profile: FC = () => {
     const [isInEditMode, editPage] = useState(false);
 
     return (
-        <Wrapper2>
-            {/* {console.log(typeof(fullUsersList[0]))} */}
-        {/* {fullUsersList?.length > 0 && */}
-        <UserInfo 
-            id={fullUsersList?.id}
-            title={fullUsersList?.title}
-            firstName={fullUsersList?.firstName}
-            lastName={fullUsersList?.lastName}
-            gender={fullUsersList?.gender}
-            email={fullUsersList?.email}
-            dateOfBirth={fullUsersList?.dateOfBirth}
-            registerDate={fullUsersList?.registerDate}
-            phone={fullUsersList?.phone}
-            picture={fullUsersList?.picture}
-            location={fullUsersList?.location}
+      <Wrapper2>
+        <UserInfo
+          id={fullUsersList?.id}
+          title={fullUsersList?.title}
+          firstName={fullUsersList?.firstName}
+          lastName={fullUsersList?.lastName}
+          gender={fullUsersList?.gender}
+          email={fullUsersList?.email}
+          dateOfBirth={fullUsersList?.dateOfBirth}
+          registerDate={fullUsersList?.registerDate}
+          phone={fullUsersList?.phone}
+          picture={fullUsersList?.picture}
+          location={fullUsersList?.location}
         />
         <HorizontalLine />
-        <EditButton onClick={() => {return editPage(!isInEditMode)}}><img src='../media/icons/edit.png' alt="" /></EditButton>
-        <Specialities isInEditMode={isInEditMode}/>
+        <EditButton
+          onClick={() => {
+            return editPage(!isInEditMode);
+          }}
+        >
+          <img src="../media/icons/edit.png" alt="" />
+        </EditButton>
+        <Specialities isInEditMode={isInEditMode} />
         <HorizontalLine />
-        <PanelInformations isInEditMode={isInEditMode}/>
-        <Services 
-            isInEditMode={isInEditMode}
-            user={usersList}
-        />
+        <PanelInformations isInEditMode={isInEditMode} />
+        <Services isInEditMode={isInEditMode} user={usersList} />
         <HorizontalLine />
         <Propsals isInEditMode={isInEditMode} />
         <HorizontalLine />
         <Reviews isInEditMode={isInEditMode} />
         <HorizontalLine />
         <FeesAmount isInEditMode={isInEditMode} />
-        </Wrapper2>
+      </Wrapper2>
     );
 };

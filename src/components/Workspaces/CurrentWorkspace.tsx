@@ -1,13 +1,7 @@
 import { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import {StartWorking} from './StartWorking';
 import { useSelector } from 'react-redux';
-
-import {PageElements} from '../../styledHelpers/Components';
-import {Colors} from '../../styledHelpers/Colors';
-import { LatestUpdates } from './LatestUpdates';
 import { IState } from '../../reducers';
-// import { ISelectedWorkspace } from '../../reducers/workspaceReducer';
 import { useDispatch } from 'react-redux';
 import { getWorkspace } from '../../actions/workspaceActions';
 import {IWorkspace} from '../../entities/workspace';
@@ -41,9 +35,6 @@ type GetWorkspace = ReturnType<typeof getWorkspace>;
 
 export const CurrentWorkspace: FC = () => {
 
-    // const { title, mainImg, icon, descFirstIcon, descType, descSecondIcon, descUsers, updated  } = useSelector<IState, ISelectedWorkspace>(globalState => ({
-    //     ...globalState.workspace
-    // }));
     const { title, mainImg, icon, descFirstIcon, descSecondIcon, descUsers, descType, updated } = useSelector<IState, IWorkspace>(globalState => ({
         ...globalState.workspace
     }));
@@ -53,17 +44,21 @@ export const CurrentWorkspace: FC = () => {
     }, []);
 
     return (
-            <Wrapper>
-                <BackgroundImg src={mainImg} alt="" />
-                <WorkspaceContainer>
-                <div><Icon src={icon} alt="" /></div>
-                <div>
-                    <h2>{title}</h2>
-                    <p><MinIcons src={descFirstIcon} alt="" /> {descType} <MinIcons src={descSecondIcon} alt="" /> {descUsers}</p>
-                    <p>{updated}</p>
-                </div>
-                
-                </WorkspaceContainer>
-            </Wrapper>
+      <Wrapper>
+        <BackgroundImg src={mainImg} alt="" />
+        <WorkspaceContainer>
+          <div>
+            <Icon src={icon} alt="" />
+          </div>
+          <div>
+            <h2>{title}</h2>
+            <p>
+              <MinIcons src={descFirstIcon} alt="" /> {descType}{" "}
+              <MinIcons src={descSecondIcon} alt="" /> {descUsers}
+            </p>
+            <p>{updated}</p>
+          </div>
+        </WorkspaceContainer>
+      </Wrapper>
     );
 };

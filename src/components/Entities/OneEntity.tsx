@@ -20,12 +20,12 @@ interface IEntity {
 
 export const OneEntity: FC<IEntity> = (props) => {
     return (
-        <Entity>
-            <EntityImg src={props.src} alt='' />
-            <div>
-                <h4>{props.title}</h4>
-                <span>Description</span>
-            </div>
-        </Entity>
-    )
+      <Entity>
+        <EntityImg src={props.src} alt="" />
+        <div>
+          <h4>{props.title}</h4>
+          <span>Description</span>
+        </div>
+      </Entity>
+    );
 }

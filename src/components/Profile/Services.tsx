@@ -1,12 +1,7 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { IState } from '../../reducers';
-import { IUsersReducer } from '../../reducers/usersReducer';
 import {ISingleUser} from '../../entities/user';
-import {IFullUser} from '../../entities/fullUser';
 import {Colors} from '../../styledHelpers/Colors';
-import { profile } from 'node:console';
 
 const About = styled.div`
     margin-top: 20px;
@@ -66,53 +61,96 @@ export const Services: FC<IProps> = (props) => {
     })
 
     return (
-        <div>
-            <About> 
-                <span style={{fontWeight: 'bold'}}>Services & projects</span>
-                <OneRow>
-                    {
-                    !props.isInEditMode ?
-                    <Title>{info.about}</Title> :
-                    <input type="text" value={info.about} onChange={e => setInfo({...info, about: e.target.value})} />
+      <div>
+        <About>
+          <span style={{ fontWeight: "bold" }}>Services & projects</span>
+          <OneRow>
+            {!props.isInEditMode ? (
+              <Title>{info.about}</Title>
+            ) : (
+              <input
+                type="text"
+                value={info.about}
+                onChange={(e) => setInfo({ ...info, about: e.target.value })}
+              />
+            )}
+          </OneRow>
+          <span style={{ fontWeight: "bold" }}>Internal correspondants</span>
+          <OneRow>
+            {!props.isInEditMode ? (
+              <div>
+                <InternalUsers>
+                  <div>
+                    <StyledImg src={profile.pictureFirst} alt="" />
+                    <span>
+                      {profile.firstNameFirst} {profile.lastNameFirst}
+                    </span>
+                  </div>
+                  <div>Message</div>
+                  <div>Profile</div>
+                </InternalUsers>
+                <InternalUsers>
+                  <div>
+                    <StyledImg src={profile.pictureSecond} alt="" />
+                    <span>
+                      {profile.firstNameSecond} {profile.lastNameSecond}
+                    </span>
+                  </div>
+                  <div>Message</div>
+                  <div>Profile</div>
+                </InternalUsers>
+              </div>
+            ) : (
+              <div>
+                <InternalUsers>
+                  <div>
+                    <StyledImg src={profile.pictureFirst} alt="" />
+                  </div>
+                  <input
+                    type="text"
+                    value={profile.firstNameFirst}
+                    onChange={(e) =>
+                      setProfile({ ...profile, firstNameFirst: e.target.value })
                     }
-                </OneRow>
-                <span style={{fontWeight: 'bold'}}>Internal correspondants</span>
-                <OneRow>
-                    {
-                    !props.isInEditMode ?
-                    <div>
-                        <InternalUsers>
-                            <div><StyledImg src={profile.pictureFirst} alt=""/>
-                            <span>{profile.firstNameFirst} {profile.lastNameFirst}</span></div>
-                            <div>Message</div>
-                            <div>Profile</div>
-                        </InternalUsers>
-                        <InternalUsers>
-                            <div><StyledImg src={profile.pictureSecond} alt=""/>
-                            <span>{profile.firstNameSecond} {profile.lastNameSecond}</span></div>
-                            <div>Message</div>
-                            <div>Profile</div>
-                        </InternalUsers>
-                    </div> :
-                    <div>
-                        <InternalUsers>
-                            <div><StyledImg src={profile.pictureFirst} alt=""/></div>
-                            <input type="text" value={profile.firstNameFirst} onChange={e => setProfile({...profile, firstNameFirst: e.target.value})} />
-                            <input type="text" value={profile.lastNameFirst} onChange={e => setProfile({...profile, lastNameFirst: e.target.value})} />
-                            <div>Message</div>
-                            <div>Profile</div>
-                        </InternalUsers>
-                        <InternalUsers>
-                            <div><StyledImg src={profile.pictureSecond} alt=""/></div>
-                            <input type="text" value={profile.firstNameSecond} onChange={e => setProfile({...profile, firstNameSecond: e.target.value})} />
-                            <input type="text" value={profile.lastNameSecond} onChange={e => setProfile({...profile, lastNameSecond: e.target.value})} />
-                            <div>Message</div>
-                            <div>Profile</div>
-                        </InternalUsers>
-                    </div>
+                  />
+                  <input
+                    type="text"
+                    value={profile.lastNameFirst}
+                    onChange={(e) =>
+                      setProfile({ ...profile, lastNameFirst: e.target.value })
                     }
-                </OneRow>
-            </About>
-        </div>
+                  />
+                  <div>Message</div>
+                  <div>Profile</div>
+                </InternalUsers>
+                <InternalUsers>
+                  <div>
+                    <StyledImg src={profile.pictureSecond} alt="" />
+                  </div>
+                  <input
+                    type="text"
+                    value={profile.firstNameSecond}
+                    onChange={(e) =>
+                      setProfile({
+                        ...profile,
+                        firstNameSecond: e.target.value,
+                      })
+                    }
+                  />
+                  <input
+                    type="text"
+                    value={profile.lastNameSecond}
+                    onChange={(e) =>
+                      setProfile({ ...profile, lastNameSecond: e.target.value })
+                    }
+                  />
+                  <div>Message</div>
+                  <div>Profile</div>
+                </InternalUsers>
+              </div>
+            )}
+          </OneRow>
+        </About>
+      </div>
     );
 };

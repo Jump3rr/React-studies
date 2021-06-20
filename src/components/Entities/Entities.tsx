@@ -1,14 +1,13 @@
-import { FC, useState, ChangeEvent, useEffect } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { IState } from '../../reducers';
 
 import { OneEntity } from './OneEntity';
 import { useSelector } from 'react-redux';
 import { IPhotosReducer } from '../../reducers/photosReducer';
-import {PageElements, Wrapper} from '../../styledHelpers/Components';
+import {PageElements} from '../../styledHelpers/Components';
 import {Colors} from '../../styledHelpers/Colors';
 import { IPhoto } from '../../entities/photos';
-import { SearchInput } from '../common/SearchInput';
 import {Filters} from './Filters';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import {VerticalLine} from '../common/verticalLine';

@@ -1,10 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { IState } from '../../reducers';
-import { IUsersReducer } from '../../reducers/usersReducer';
-import {ISingleUser} from '../../entities/user';
-import {IFullUser} from '../../entities/fullUser';
 import {Colors} from '../../styledHelpers/Colors';
 
 const About = styled.div`
@@ -24,14 +19,14 @@ const SelectedFile = styled.div`
     width: 80%;
 `;
 const Title = styled.div`
-    width: 50%;
-    text-align: left;
-    color: ${Colors.grey};
-    margin: 10px 0 5px 0;
+  width: 50%;
+  text-align: left;
+  color: ${Colors.grey};
+  margin: 10px 0 5px 0;
 `;
 
 interface IProps {
-    isInEditMode?: Boolean;
+  isInEditMode?: Boolean;
 }
 
 export const PanelInformations: FC<IProps> = (props) => {
