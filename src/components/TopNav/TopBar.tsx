@@ -14,6 +14,18 @@ const Wrapper2 = styled(Wrapper)`
   top: 0;
   z-index: 2;
 `;
+const Notification = styled.div`
+  height: 20px;
+  position: relative;
+  display: inline-flex;
+  width: 20px;
+  background-color: ${Colors.blue};
+  border-radius: 50%;
+  color: ${Colors.white};
+  left: -15px;
+  justify-content: center;
+  text-decoration: none;
+`;
 
 const InnerWrapper = styled.div`
   width: 100%;
@@ -62,9 +74,17 @@ export const TopBar: FC = () => {
           <SearchInput />
         </InputWrapper>
         <RightSide>
-          <CustomImg src="./media/icons/house.png" />
-          <CustomImg src="../../media/icons/comments.png" />
-          <CustomImg src="../../media/icons/bell.png" />
+          <Link to="/">
+            <CustomImg src="./media/icons/house.png" />
+          </Link>
+          <Link to="/test">
+            <CustomImg src="../../media/icons/comments.png" />
+            <Notification>2</Notification>
+          </Link>
+          <Link to="/test">
+            <CustomImg src="../../media/icons/bell.png" />
+            <Notification>3</Notification>
+          </Link>
         </RightSide>
       </InnerWrapper>
     </Wrapper2>

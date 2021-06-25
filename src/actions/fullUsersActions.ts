@@ -8,7 +8,7 @@ const APP_ID = '60c32fd3eb0a2f0af65b8d01';
 export const getFullUsers = (): Promise<any> => ((dispath: Dispatch) => {
 
     return (
-        fetch('https://dummyapi.io/data/api/user/0F8JIqi4zwvb77FGz6Wt', {headers: {'app-id': APP_ID}}) 
+        fetch('https://dummyapi.io/data/api/user/60d0fe4f5311236168a109ca', {headers: {'app-id': APP_ID}}) 
         .then(response => response.json())
         .then((fullUsersList: IFullUser) => {
             dispath({

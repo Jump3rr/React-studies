@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const About = styled.div`
     margin-top: 20px;
@@ -308,7 +309,7 @@ export const Propsals: FC<IProps> = (props) => {
             )}
           </OneColumn>
         </ProposalsContainer>
-        <MoreLink>See more proposals</MoreLink>
+        <Link to='/test'><MoreLink>See more proposals</MoreLink></Link>
       </About>
     );
 };

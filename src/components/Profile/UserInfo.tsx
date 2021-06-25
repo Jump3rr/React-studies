@@ -54,13 +54,6 @@ export const UserInfo: FC<IFullUser> = (props) => {
       street: props?.location.street,
       country: props?.location.country,
       timezone: props?.location.timezone,
-      // location: {
-      //     city: props?.location.city,
-      //     state: props?.location.state,
-      //     street: props?.location.street,
-      //     country: props?.location.country,
-      //     timezone: props?.location.timezone,
-      // }
     });
 
     return (
@@ -71,7 +64,7 @@ export const UserInfo: FC<IFullUser> = (props) => {
                 <TopOptions><img src='../media/icons/workCluster.png' alt="" /> Add to a cluster</TopOptions>
                 <TopOptions><img src='../media/icons/x.png' alt="" /></TopOptions>
             </Options>
-            {user.firstName !== '' &&
+            {user.lastName !== '' &&
             <About> 
                 <div>
                 <ProfilePicture src={user.picture} alt=""/>
